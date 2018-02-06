@@ -56,6 +56,3 @@ jobs:
   build_test_and_deploy:
     jobs:
       - build
-      - test_api_v25:
-          requires:
-            - build
