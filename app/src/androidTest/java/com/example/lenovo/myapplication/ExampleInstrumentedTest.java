@@ -43,7 +43,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void changeText_newActivity() {
         // Type text and then press the button.
-        onView(withId(R.id.inputField)).perform(typeText("NewText"),
+        onView(withId(R.id.inputField)).perform(typeText("NewText1"),
                 closeSoftKeyboard());
         onView(withId(R.id.switchActivity)).perform(click());
 
