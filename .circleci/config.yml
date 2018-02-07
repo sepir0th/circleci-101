@@ -89,7 +89,7 @@ jobs:
             paths:
               - ~/.gradle
             key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-   beta_release:
+  beta_release:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-26-alpha
