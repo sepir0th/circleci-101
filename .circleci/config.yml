@@ -98,6 +98,3 @@ workflows:
       - test_api_v16:
             requires:
                 - build
-      - documentation:
-            requires:
-                - test_api_v16
