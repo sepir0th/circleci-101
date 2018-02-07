@@ -101,12 +101,12 @@ jobs:
       FL_OUTPUT_DIR: /code/output
     shell: /bin/bash --login -o pipefail
     steps:
-      - run:
-          name: install Bundler
-          command: echo "export rvm_ignore_gemsets_flag=1" >> ~/.rvmrc - gem install bundler
       - checkout
       - restore_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: install Bundler
+          command: echo "export rvm_ignore_gemsets_flag=1" >> ~/.rvmrc - gem install bundler
       - run: bundle check || bundle install --path vendor/bundle
       - save_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
