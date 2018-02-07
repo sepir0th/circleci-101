@@ -89,15 +89,15 @@ jobs:
             paths:
               - ~/.gradle
             key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-  beta_release:
+  deploy_beta:
     working_directory: ~/code
     docker:
+      # Android the primary container
       - image: circleci/android:api-26-alpha
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
-      - run: echo "meow is working for you 👯"
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
@@ -113,23 +113,11 @@ jobs:
           name: Transifex
           command: source ci/scripts/ci_transifex.sh
       - run:
-          name: Initial build
-          command: ./gradlew clean assembleRelease --no-daemon --stacktrace
-      - store_artifacts:
-          path: app/build/outputs/apk/
-          destination: apks/
+          name: Create apk
+          command: ./gradlew assembleRelease
       - run:
-          name: "Deploy to Fabric 🎉🎉"
-          command: |
-            echo "Branch: ${CIRCLE_BRANCH} , PR: ${CIRCLE_PULL_REQUEST}"
-            if [ "${CIRCLE_BRANCH}" == "master" -o "${CIRCLE_PULL_REQUEST}" != "" ]; then
-              ./gradlew crashlyticsUploadDistributionDevelopmentRelease --stacktrace --debug --no-daemon
-            fi
-
-            release=$(cut -c-7 <<< "${CIRCLE_BRANCH}")
-            if [ "$release" == "release"]; then
-              ./gradlew crashlyticsUploadDistributionProductionRelease --stacktrace --debug --no-daemon
-            fi
+          name: Deploy to Google Play
+          command: source ci/scripts/ci_fastlane.sh "beta"
       - save_cache:
           paths:
             - ~/.gradle
@@ -143,4 +131,4 @@ workflows:
       - test_api_v16:
             requires:
                 - build
-      - beta_release
+      - deploy_beta
