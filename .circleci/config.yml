@@ -101,25 +101,24 @@ jobs:
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+          name: Setup environment
+          command: source ci/scripts/ci_setup.sh
       - run:
-          name: Run Tests
-          command: ./gradlew lint test
-      - store_test_results:
-                path: app/build/test-results
-                destination: test-results/
+          name: Update version and code
+          command: source ci/scripts/ci_updateversion.sh
+      - run:
+          name: Update about information
+          command: source ci/scripts/ci_about.sh
+      - run:
+          name: Transifex
+          command: source ci/scripts/ci_transifex.sh
       - run:
           name: Initial build
           command: ./gradlew clean assembleRelease --no-daemon --stacktrace
       - store_artifacts:
           path: app/build/outputs/apk/
           destination: apks/
-      - deploy:
+      - run:
           name: "Deploy to Fabric 🎉🎉"
           command: |
             echo "Branch: ${CIRCLE_BRANCH} , PR: ${CIRCLE_PULL_REQUEST}"
@@ -131,10 +130,17 @@ jobs:
             if [ "$release" == "release"]; then
               ./gradlew crashlyticsUploadDistributionProductionRelease --stacktrace --debug --no-daemon
             fi
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
             
 workflows:
   version: 2
   build_test_and_deploy:
     jobs:
       - build
+      - test_api_v16:
+            requires:
+                - build
       - beta_release
