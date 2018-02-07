@@ -1,5 +1,6 @@
 version: 2
-jobs:
+
+jobs:   
   build:
     working_directory: ~/code
     docker:
@@ -99,10 +100,10 @@ jobs:
       FASTLANE_LANE: test
       FL_OUTPUT_DIR: /code/output
     shell: /bin/bash --login -o pipefail
-    dependencies: 
-        pre: 
-            - echo "export rvm_ignore_gemsets_flag=1" >> ~/.rvmrc - gem install bundler
     steps:
+      - run:
+          name: install Bundler
+          command: echo "export rvm_ignore_gemsets_flag=1" >> ~/.rvmrc - gem install bundler
       - checkout
       - restore_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
@@ -133,3 +134,4 @@ workflows:
       - deploy_beta:
             requires:
                 - build
+                - dependencies
