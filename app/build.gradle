@@ -6,6 +6,14 @@ repositories {
 }
 
 android {
+    signingConfigs {
+        keyConfig {
+            keyAlias 'androidKey'
+            keyPassword 'ultima51'
+            storeFile file('/Users/erwinlim/Documents/Excite/Research/Automated_Testing_CI_CD/CircleCI/key')
+            storePassword 'nasigoreng'
+        }
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.lenovo.myapplication"
@@ -19,12 +27,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.keyConfig
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
