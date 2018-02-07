@@ -134,4 +134,3 @@ workflows:
       - deploy_beta:
             requires:
                 - build
-                - dependencies
