@@ -55,3 +55,6 @@ workflows:
   build_test_and_deploy:
     jobs:
       - build
+      - test_api_v16:
+        requires:
+            - build
