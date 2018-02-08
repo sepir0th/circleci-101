@@ -10,6 +10,7 @@
 # update_fastlane
 
 default_platform(:android)
+ENV["SLACK_URL"] = "https://erwinworkspace.slack.com/messages/D9575L1FB/"
 
 platform :android do
   desc "Runs all the tests"
@@ -25,6 +26,9 @@ platform :android do
     	build_secret: "56e2565c456720d16a2ab97d2e326d02b985eb5ebbd4624f5a3b49414af1030f",
     	groups: "neko-group"
   	)
+  	slack(
+      message: "New version pushed to Beta by fastlane."
+    )
   
     # sh "your_script.sh"
     # You can also use other beta testing services here
