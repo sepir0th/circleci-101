@@ -10,7 +10,7 @@
 # update_fastlane
 
 default_platform(:android)
-ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
 
 platform :android do
   desc "Runs all the tests"
@@ -24,7 +24,8 @@ platform :android do
     crashlytics(
     	api_token: "6c7ff41da047fa088f9c7de0bc9d2c4ff3b796ea",
     	build_secret: "56e2565c456720d16a2ab97d2e326d02b985eb5ebbd4624f5a3b49414af1030f",
-    	groups: "neko-group"
+    	groups: "neko-group",
+    	notes: changelog_from_git_commits
   	)
   	slack(
       message: "New version pushed to Beta by fastlane."
