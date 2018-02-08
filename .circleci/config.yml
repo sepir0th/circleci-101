@@ -114,8 +114,12 @@ jobs:
           name: Create apk
           command: ./gradlew assembleRelease
       - run:
-          name: fastlane
+          name: fastlane exec
           command: bundle exec fastlane $FASTLANE_LANE
+          when: always
+      - run:
+          name: upload to Crashlytics
+          command: bundle exec fastlane beta
           when: always
       - store_artifacts:
           path: app/build/reports
