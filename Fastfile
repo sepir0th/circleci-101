@@ -22,7 +22,4 @@ lane :beta do
     api_token: "6c7ff41da047fa088f9c7de0bc9d2c4ff3b796ea",
     build_secret: "56e2565c456720d16a2ab97d2e326d02b985eb5ebbd4624f5a3b49414af1030f"
   )
-
-  before_all do
-    setup_circle_ci
 end

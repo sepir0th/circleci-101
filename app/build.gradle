@@ -10,7 +10,7 @@ android {
         keyConfig {
             keyAlias 'androidKey'
             keyPassword 'ultima51'
-            storeFile file('/Users/erwinlim/Documents/Excite/Research/Automated_Testing_CI_CD/CircleCI/key')
+            storeFile file('../key')
             storePassword 'nasigoreng'
         }
     }

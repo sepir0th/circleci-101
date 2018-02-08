@@ -99,7 +99,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
       FASTLANE_LANE: test
-      FL_OUTPUT_DIR: /code/output
+      FL_OUTPUT_DIR: ~/code/output
     steps:
       - checkout
       - restore_cache:
