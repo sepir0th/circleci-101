@@ -99,7 +99,7 @@ jobs:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
-          key: v1-bundle-{{ checksum "Gemfile.lock" }}
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
       - run: bundle --path vendor/bundle
   deploy_beta:
     working_directory: ~/code
@@ -143,4 +143,3 @@ workflows:
       - deploy_beta:
             requires:
                 - build
-                - precompile_assets
