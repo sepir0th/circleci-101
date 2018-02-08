@@ -10,7 +10,7 @@
 # update_fastlane
 
 default_platform(:android)
-ENV["SLACK_URL"] = "https://erwinworkspace.slack.com/messages/D9575L1FB/"
+ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
 
 platform :android do
   desc "Runs all the tests"
