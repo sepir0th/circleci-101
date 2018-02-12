@@ -133,4 +133,4 @@ workflows:
                 - build
       - deploy_beta:
             requires:
-                - build
+                - test_api_v16
