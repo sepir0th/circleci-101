@@ -1,0 +1,43 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new Beta Build to Crashlytics Beta"
+  lane :beta do
+    gradle(task: "assembleRelease")
+    crashlytics(
+    	api_token: "6c7ff41da047fa088f9c7de0bc9d2c4ff3b796ea",
+    	build_secret: "56e2565c456720d16a2ab97d2e326d02b985eb5ebbd4624f5a3b49414af1030f",
+    	groups: "neko-group",
+    	notes: changelog_from_git_commits(commits_count: 1)
+  	)
+  	slack(
+      message: "New version pushed to Beta by fastlane."
+    )
+  
+    # sh "your_script.sh"
+    # You can also use other beta testing services here
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    gradle(task: "assembleRelease")
+    upload_to_play_store
+  end
+end

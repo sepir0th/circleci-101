@@ -1,5 +1,6 @@
 version: 2
-jobs:
+
+jobs:   
   build:
     working_directory: ~/code
     docker:
@@ -62,29 +63,8 @@ jobs:
         - restore_cache:
             key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
         - run:
-            name: Setup environment
-            command: source ci/scripts/ci_setup.sh
-        - run:
-            name: Setup emulator
-            command: sdkmanager "system-images;android-16;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-16;default;armeabi-v7a"
-        - run:
-            name: Launch emulator
-            command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -noaudio -no-boot-anim -no-window -accel on
-            background: true
-        - run:
-            name: Wait emulator
-            command: |
-              # wait for it to have booted
-              circle-android wait-for-boot
-              # unlock the emulator screen
-              sleep 30
-              adb shell input keyevent 82
-        - run:
-            name: Coverage
-            command: source ci/scripts/ci_coverage.sh
-        - run:
             name: Javadoc
-            command: source ci/scripts/ci_javadoc.sh
+            command: javadoc  -protected -splitindex -use -author -version @/private/var/folders/bp/zdlhwk7d7bv1kb_sqpzwj21m0000gn/T/javadoc2args.txt -bootclasspath ~/Library/Android/sdk/platforms/android-27/android.jar -Xdoclint:none -link http://docs.oracle.com/javase/8/docs/api/ -classpath ~/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/988ae6e56125b06515c9e02b7d31efd3/jars/classes.jar:~/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/988ae6e56125b06515c9e02b7d31efd3/res:~/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar:~/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/2fb493a19449fb0c2238478cb333cb25/jars/classes.jar:~/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/2fb493a19449fb0c2238478cb333cb25/res:~/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar:~/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.0/e414a4cb28434e25c4f6aa71426eb20cf4874ae9/common-1.0.0.jar:~/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.0.0/a2d487452376193fc8c103dd2b9bd5f2b1b44563/common-1.0.0.jar:~/.gradle/caches/transforms-1/files-1.1/fabric-1.4.1.aar/9ccfc9f1d66c86300e4858d3f7577826/jars/classes.jar:~/.gradle/caches/transforms-1/files-1.1/crashlytics-core-2.5.0.aar/784e99fa7156e894ef7d1e592cbe9143/jars/classes.jar:~/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/a0010c42efd061a6b156e48db4c3a6f5/jars/classes.jar:~/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/33514eea5761f282353582ee0480dea1/jars/classes.jar:~/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/c005ab3555ab884dfd363918cf9bf047/jars/classes.jar:~/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/84a29e229fe8b6acf9aae390a700413f/jars/classes.jar:~/.gradle/caches/transforms-1/files-1.1/beta-1.2.7.aar/c4218a6a169b3a9508a292f46c741be1/jars/classes.jar:~/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/e5ab9fccfaa62a2a07f634094f93497c/res:~/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/e5ab9fccfaa62a2a07f634094f93497c/jars/classes.jar:~/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/9a7e4a9e9e3a03d8fae08d52f0e49948/jars/classes.jar:~/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/26.1.0/814258103cf26a15fcc26ecce35f5b7d24b73f8/support-annotations-26.1.0.jar:~/.gradle/caches/transforms-1/files-1.1/crashlytics-2.8.0.aar/a226dace578e3705bb89af872a78bbe0/jars/classes.jar:~/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/a7b108e48d00a687e9c4d499bcbf26e8/jars/classes.jar:~/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/50dfde23649a95461cb6b374e084e447/jars/classes.jar:~/.gradle/caches/transforms-1/files-1.1/answers-1.4.1.aar/12d07a17b6ce8b3475564e0c8aa948e1/jars/classes.jar -d ./Documents/Excite/Research/Automated_Testing_CI_CD/CircleCI/Documentation
         - save_cache:
             paths:
               - ~/.gradle
@@ -94,35 +74,36 @@ jobs:
     docker:
       # Android the primary container
       - image: circleci/android:api-26-alpha
+      - image: circleci/ruby:2.4-node
     environment:
       JVM_OPTS: -Xmx3200m
+      FASTLANE_LANE: test
+      FL_OUTPUT_DIR: ~/code/output
     steps:
       - checkout
       - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-      - run:
-          name: Setup environment
-          command: source ci/scripts/ci_setup.sh
-      - run:
-          name: Update version and code
-          command: source ci/scripts/ci_updateversion.sh
-      - run:
-          name: Update about information
-          command: source ci/scripts/ci_about.sh
-      - run:
-          name: Transifex
-          command: source ci/scripts/ci_transifex.sh
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+      - run: gem install bundler
+      - run: bundle check || bundle install --path vendor/bundle
+      - save_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
       - run:
           name: Create apk
           command: ./gradlew assembleRelease
       - run:
-          name: Deploy to Google Play
-          command: source ci/scripts/ci_fastlane.sh "beta"
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-            
+          name: fastlane exec
+          command: bundle exec fastlane $FASTLANE_LANE
+          when: always
+      - run:
+          name: upload to Crashlytics
+          command: bundle exec fastlane beta
+          when: always
+      - store_artifacts:
+          path: app/build/reports
+      - store_test_results:
+          path: app/build/test-results
 workflows:
   version: 2
   build_test_and_deploy:
