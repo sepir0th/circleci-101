@@ -1,10 +1,13 @@
-package com.example.lenovo.myapplication;
+package com.example.lenovo.myapplication.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.lenovo.myapplication.R;
+
 /**
  * Created by LENOVO on 06/02/2018.
  */
