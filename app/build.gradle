@@ -17,7 +17,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.lenovo.myapplication"
-        minSdkVersion 26
+        minSdkVersion 16
         versionCode 5
         versionName "4.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
