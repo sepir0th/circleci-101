@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.lenovo.myapplication.Activities.MainActivity;
 import com.example.lenovo.myapplication.R;
+import com.example.lenovo.myapplication.Registration.LoginActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -126,7 +127,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void launchHomeScreen() {
         prefManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+        startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
         finish();
     }
 
