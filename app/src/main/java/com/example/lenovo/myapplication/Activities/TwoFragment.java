@@ -3,6 +3,8 @@ package com.example.lenovo.myapplication.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.lenovo.myapplication.R;
+import com.example.lenovo.myapplication.TestEmployee.Employee;
+import com.example.lenovo.myapplication.TestEmployee.EmployeeAdapter;
+
+import java.util.ArrayList;
 
 
 /**
@@ -23,6 +29,10 @@ public class TwoFragment extends Fragment implements View.OnClickListener{
     EditText editText;
     Button chgButton;
     Button switchButton;
+
+    private RecyclerView recyclerView;
+    private EmployeeAdapter adapter;
+    private ArrayList<Employee> employeeArrayList;
 
     public TwoFragment() {
         // Required empty public constructor
@@ -43,6 +53,22 @@ public class TwoFragment extends Fragment implements View.OnClickListener{
         chgButton.setOnClickListener(this);
         switchButton = mainLayout.findViewById(R.id.switchActivityTwo);
         switchButton.setOnClickListener(this);
+
+        employeeArrayList = new ArrayList<>();
+        employeeArrayList.add(new Employee("Employee1", "emp1@example.com", "123456789"));
+        employeeArrayList.add(new Employee("Employee2", "emp2@example.com", "987654321"));
+        employeeArrayList.add(new Employee("Employee3", "emp3@example.com", "789456123"));
+        employeeArrayList.add(new Employee("Employee4", "emp4@example.com", "321654987"));
+
+        recyclerView = (RecyclerView) mainLayout.findViewById(R.id.recycler_view);
+
+        adapter = new EmployeeAdapter(employeeArrayList);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.setAdapter(adapter);
 
         // Inflate the layout for this fragment
         return mainLayout;

@@ -3,9 +3,11 @@ package com.example.lenovo.myapplication.Activities;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -13,6 +15,7 @@ import android.widget.LinearLayout;
 
 import com.example.lenovo.myapplication.CustomGridview.Book;
 import com.example.lenovo.myapplication.CustomGridview.BooksAdapter;
+import com.example.lenovo.myapplication.CustomGridview.SubHeaderMenuAdapter;
 import com.example.lenovo.myapplication.R;
 
 import java.util.ArrayList;
@@ -48,21 +51,29 @@ public class OneFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         LinearLayout mainLayout = (LinearLayout )inflater.inflate(R.layout.fragment_one, container, false);
-        editText = mainLayout.findViewById(R.id.inputField);
-        chgButton = mainLayout.findViewById(R.id.changeText);
-        chgButton.setOnClickListener(this);
-        switchButton = mainLayout.findViewById(R.id.switchActivity);
-        switchButton.setOnClickListener(this);
+//        editText = mainLayout.findViewById(R.id.inputField);
+//        chgButton = mainLayout.findViewById(R.id.changeText);
+//        chgButton.setOnClickListener(this);
+//        switchButton = mainLayout.findViewById(R.id.switchActivity);
+//        switchButton.setOnClickListener(this);
 
-        Book goRide = new Book("GO-RIDE",1,R.drawable.ic_001_fan,"0");
-        Book goCar = new Book("GO-CAR",1,R.drawable.ic_002_dancer_1,"0");
-        Book goBlueBird = new Book("GO-BLUEBIRD",1,R.drawable.ic_003_man,"0");
-        Book goFood = new Book("GO-FOOD",1,R.drawable.ic_007_theater_1,"0");
-        Book goSend = new Book("GO-SPEED",1,R.drawable.ic_008_binoculars,"0");
-        Book goPulsa = new Book("GO-PULSA",1,R.drawable.ic_010_painting,"0");
-        Book goBills = new Book("GO-BILLS",1,R.drawable.ic_019_hat_1,"0");
-        Book goShop = new Book("GO-SHOP",1,R.drawable.ic_022_mask,"0");
-        Book goMart = new Book("GO-MART",1,R.drawable.ic_034_violin,"0");
+        Book mainRedemptionPulsa = new Book("Pulsa",1,R.drawable.ic_054_smartphone_1,"0");
+        Book mainRedemptionPaketData = new Book("Paket Data",1,R.drawable.ic_012_browser_1,"0");
+        Book mainRedemptionPLN = new Book("PLN",1,R.drawable.ic_009_startup,"0");
+        Book mainRedemptionTelepon = new Book("Telepon",1,R.drawable.ic_002_credit_card_6,"0");
+        Book mainRedemptionBPJS = new Book("BPJS",1,R.drawable.ic_003_shopping_bag_2,"0");
+        Book mainRedemptionPDAM = new Book("PDAM",1,R.drawable.ic_006_coding,"0");
+        Book mainRedemptionVoucher = new Book("Voucher",1,R.drawable.ic_007_analytics_1,"0");
+        Book mainRedemptionEVoucher = new Book("e-Voucher",1,R.drawable.ic_013_purse,"0");
+        Book mainRedemptionKuliner = new Book("Kuliner",1,R.drawable.ic_015_gift_1,"0");
+        Book mainRedemptionElektronik = new Book("Elektronik",1,R.drawable.ic_014_buy_1,"0");
+        Book mainRedemptionGames = new Book("Games",1,R.drawable.ic_001_pin,"0");
+        Book mainRedemptionCicilan = new Book("Cicilan",1,R.drawable.ic_005_shirt,"0");
+
+        Book subHeaderGridMenuScanTrans = new Book("Scan Transaksi",1,R.drawable.ic_011_gift_2,"0");
+        Book subHeaderGridMenuStamp = new Book("Stamp Program",1,R.drawable.ic_012_browser_1,"0");
+        Book subHeaderGridMenuScanQR = new Book("Scan QR To Pay",1,R.drawable.ic_054_smartphone_1,"0");
+        Book subHeaderGridMenuGetPoint = new Book("Bantuan",1,R.drawable.ic_054_smartphone_1,"0");
 
         BannerSlider bannerSlider = mainLayout.findViewById(R.id.banner_slider1);
         bannerSlider.setInterval(5000);
@@ -79,28 +90,44 @@ public class OneFragment extends Fragment implements View.OnClickListener{
         bannerSlider.setBanners(banners);
 
 
-        Book[] books = {goRide, goCar, goBlueBird, goFood, goSend, goPulsa, goBills, goShop};
+        Book[] books = {mainRedemptionPulsa, mainRedemptionPaketData, mainRedemptionPLN, mainRedemptionTelepon,
+                mainRedemptionBPJS, mainRedemptionPDAM, mainRedemptionVoucher, mainRedemptionEVoucher, mainRedemptionKuliner,
+                mainRedemptionElektronik, mainRedemptionGames, mainRedemptionCicilan};
+        Book[] subHeaderGridMenuItems = {subHeaderGridMenuScanTrans, subHeaderGridMenuStamp, subHeaderGridMenuScanQR,
+                subHeaderGridMenuGetPoint};
 
         GridView gridView = mainLayout.findViewById(R.id.gridview);
-        gridView.setNumColumns(4);
         BooksAdapter booksAdapter = new BooksAdapter(getContext(), books);
         gridView.setAdapter(booksAdapter);
+
+        GridView subHeaderGridMenu = mainLayout.findViewById(R.id.SubHeaderGridMenu);
+        SubHeaderMenuAdapter subHeaderGridMenuAdapter = new SubHeaderMenuAdapter(getContext(), subHeaderGridMenuItems);
+        subHeaderGridMenu.setAdapter(subHeaderGridMenuAdapter);
+        subHeaderGridMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Log.i("Menu clicked : ", String.valueOf(position));
+                if(position == 3){
+
+                }
+            }
+        });
 
         return mainLayout;
     }
 
 
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.changeText:
-                editText.setText("Lalala");
-                break;
-            case R.id.switchActivity:
-                Intent intent = new Intent(getActivity(), SecondActivity.class);
-                intent.putExtra("input", editText.getText().toString());
-                startActivity(intent);
-                break;
-        }
+//        switch (view.getId()) {
+//            case R.id.changeText:
+//                editText.setText("Lalala");
+//                break;
+//            case R.id.switchActivity:
+//                Intent intent = new Intent(getActivity(), SecondActivity.class);
+//                intent.putExtra("input", editText.getText().toString());
+//                startActivity(intent);
+//                break;
+//        }
 
     }
 }

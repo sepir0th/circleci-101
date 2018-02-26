@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#125688</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="gridColorBackground">#FFFFFF</color>
-    <color name="windowBackground">#FCFCFF</color>
+    <color name="windowBackground">#e6e8ed</color>
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#c8e8ff</color>
 
