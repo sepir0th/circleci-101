@@ -90,8 +90,8 @@ public class ListEarnPointsMenuFragment extends Fragment{
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View rowView = inflater.inflate(R.layout.listview_adapter_earnpoint, parent, false);
-            TextView textView = (TextView) rowView.findViewById(R.id.secondLine);
-            ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
+            TextView textView = rowView.findViewById(R.id.secondLine);
+            ImageView imageView = rowView.findViewById(R.id.icon);
             textView.setText(values[position]);
             // change the icon for Windows and iPhone
             String s = values[position];

@@ -1,6 +1,7 @@
 package com.example.lenovo.myapplication.Activities.Home;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -16,6 +17,9 @@ import com.example.lenovo.myapplication.CustomGridview.BooksAdapter;
 import com.example.lenovo.myapplication.CustomGridview.SubHeaderMenuAdapter;
 import com.example.lenovo.myapplication.Promo.MyPagerAdapter;
 import com.example.lenovo.myapplication.R;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -35,6 +39,8 @@ public class Activity_Redeem extends Fragment implements View.OnClickListener{
 
     public MyPagerAdapter adapter;
     public ViewPager pager;
+
+    int currentPage = 0;
     /*
      * ends of promo parameters
      */
@@ -118,6 +124,27 @@ public class Activity_Redeem extends Fragment implements View.OnClickListener{
         // Set margin for pages as a negative number, so a part of next and
         // previous pages will be showed
         pager.setPageMargin(-450);
+
+        final Handler handler = new Handler();
+
+
+        final Runnable update = new Runnable() {
+            public void run() {
+                if (currentPage == PAGES) {
+                    currentPage = 0;
+                }
+                pager.setCurrentItem(currentPage++, true);
+            }
+        };
+
+
+        new Timer().schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                handler.post(update);
+            }
+        }, 1000, 3000);
     }
 
 

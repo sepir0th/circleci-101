@@ -12,4 +12,8 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="SplashTheme" parent="MyMaterialTheme.Base">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
 </resources>

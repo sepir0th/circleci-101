@@ -13,6 +13,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.lenovo.myapplication.Activities.EarnPointDetails.ListEarnPointsMenu;
+import com.example.lenovo.myapplication.Activities.ExcitePartner.ExcitePartnerMaster;
 import com.example.lenovo.myapplication.R;
 
 import java.util.ArrayList;
@@ -74,9 +75,8 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     Log.i("Menu clicked : ", String.valueOf(position));
-                    if(position == 3){
-
-                    }
+                    Intent excitePartnerMaster = new Intent(mContext, ExcitePartnerMaster.class);
+                    mContext.startActivity(excitePartnerMaster);
                 }
             });
             btnListAllMenu = itemView.findViewById(R.id.btn_listAllMenu);

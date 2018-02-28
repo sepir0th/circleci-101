@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -32,8 +33,20 @@ public class WelcomeActivity extends AppCompatActivity {
     private Button btnSkip, btnNext;
     private PrefManager prefManager;
 
+    /** Duration of wait **/
+    private final long SPLASH_DISPLAY_LENGTH = 2000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.SplashTheme);
+
+        //lets put a delay to show the splash screen a bit longer
+        try {
+            Thread.sleep(SPLASH_DISPLAY_LENGTH);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         super.onCreate(savedInstanceState);
 
 
@@ -41,7 +54,7 @@ public class WelcomeActivity extends AppCompatActivity {
         prefManager = new PrefManager(this);
 
         //we hardcode this first to be able to see welcome pages
-        prefManager.setFirstTimeLaunch(true);
+        //prefManager.setFirstTimeLaunch(true);
 
         if (!prefManager.isFirstTimeLaunch()) {
             launchHomeScreen();

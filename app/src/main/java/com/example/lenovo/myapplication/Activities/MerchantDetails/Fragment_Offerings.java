@@ -1,13 +1,22 @@
 package com.example.lenovo.myapplication.Activities.MerchantDetails;
 
 import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.lenovo.myapplication.Activities.EarnPointDetails.ListEarnPointsMenuFragment;
 import com.example.lenovo.myapplication.R;
 
 /**
@@ -63,7 +72,45 @@ public class Fragment_Offerings extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_blank, container, false);
+        FrameLayout LayoutFragmentOffering = (FrameLayout) inflater.inflate(R.layout.fragment_offering, container, false);
+        final ListView listview = LayoutFragmentOffering.findViewById(R.id.recipe_list_view);
+        String[] values = new String[] { "Scan Transaksi", "Stamp Program", "Scan QR to Pay" };
+
+        final MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(getContext(), values);
+        listview.setAdapter(adapter);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view,
+                                    int position, long id) {
+                final String item = (String) parent.getItemAtPosition(position);
+            }
+
+        });
+        return LayoutFragmentOffering;
+    }
+
+    public class MySimpleArrayAdapter extends ArrayAdapter<String> {
+        private final Context context;
+        private final String[] values;
+
+        public MySimpleArrayAdapter(Context context, String[] values) {
+            super(context, -1, values);
+            this.context = context;
+            this.values = values;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View rowView = inflater.inflate(R.layout.listview_adapter_offerings, parent, false);
+            Button btn_offering_type = rowView.findViewById(R.id.btn_offering_type);
+            btn_offering_type.setText(values[position]);
+
+            return rowView;
+        }
     }
 
 }
