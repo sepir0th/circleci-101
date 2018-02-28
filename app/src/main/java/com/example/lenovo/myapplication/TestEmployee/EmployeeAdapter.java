@@ -1,11 +1,18 @@
 package com.example.lenovo.myapplication.TestEmployee;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.GridView;
 import android.widget.TextView;
 
+import com.example.lenovo.myapplication.Activities.EarnPointDetails.ListEarnPointsMenu;
 import com.example.lenovo.myapplication.R;
 
 import java.util.ArrayList;
@@ -17,9 +24,12 @@ import java.util.ArrayList;
 public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder> {
 
     private ArrayList<Employee> dataList;
+    private Context mContext;
 
-    public EmployeeAdapter(ArrayList<Employee> dataList) {
+    public EmployeeAdapter(ArrayList<Employee> dataList, Context mContext) {
+
         this.dataList = dataList;
+        this.mContext = mContext;
     }
 
     @Override
@@ -30,10 +40,18 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
     }
 
     @Override
-    public void onBindViewHolder(EmployeeViewHolder holder, int position) {
+    public void onBindViewHolder(EmployeeViewHolder holder, final int position) {
         holder.txtEmpName.setText(dataList.get(position).getEmployeeName());
         holder.txtEmpEmail.setText(dataList.get(position).getEmployeeEmail());
-        holder.txtEmpPhone.setText(dataList.get(position).getEmployeePhone());
+        holder.gridViewMenu.setAdapter(dataList.get(position).getGridViewMenu());
+        holder.btnListAllMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("button earn point", "list all menu "+ position);
+                Intent intentAllMenu = new Intent(mContext, ListEarnPointsMenu.class);
+                mContext.startActivity(intentAllMenu);
+            }
+        });
     }
 
     @Override
@@ -43,13 +61,25 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
 
     class EmployeeViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtEmpName, txtEmpEmail, txtEmpPhone;
+        TextView txtEmpName, txtEmpEmail;
+        GridView gridViewMenu;
+        Button btnListAllMenu;
 
         EmployeeViewHolder(View itemView) {
             super(itemView);
-            txtEmpName = (TextView) itemView.findViewById(R.id.txt_employee_name);
-            txtEmpEmail = (TextView) itemView.findViewById(R.id.txt_employee_email);
-            txtEmpPhone = (TextView) itemView.findViewById(R.id.txt_employee_phone);
+            txtEmpName = itemView.findViewById(R.id.txt_employee_name);
+            txtEmpEmail = itemView.findViewById(R.id.txt_employee_email);
+            gridViewMenu = itemView.findViewById(R.id.GridViewMenu);
+            gridViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    Log.i("Menu clicked : ", String.valueOf(position));
+                    if(position == 3){
+
+                    }
+                }
+            });
+            btnListAllMenu = itemView.findViewById(R.id.btn_listAllMenu);
         }
     }
 }

@@ -1,7 +1,12 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.lenovo.myapplication.Activities.EarnPointDetails.ListEarnPointsMenu">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -24,24 +29,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Search"
+                    android:text="Back"
                     android:layout_alignParentLeft="true"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_centerInParent="true">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_099_wallet"
-                        android:layout_alignLeft="@id/toolbar_title"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="125,000"
+                        android:text="Earn Point"
                         android:textSize="25dp"
                         android:textColor="@color/textColorPrimary"
                         android:id="@+id/toolbar_title" />
@@ -50,25 +48,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Profile"
+                    android:text="Search"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="scrollable"
+            app:tabTextAppearance="@style/MyNotCapitalTabLayout"
+            app:tabGravity="fill"/>
     </android.support.design.widget.AppBarLayout>
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/MainHeader"
-        android:layout_above="@id/tabs"
+        android:layout_alignParentBottom="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:tabMode="fixed"
-        app:tabGravity="fill"/>
-</RelativeLayout>
+
+</LinearLayout>

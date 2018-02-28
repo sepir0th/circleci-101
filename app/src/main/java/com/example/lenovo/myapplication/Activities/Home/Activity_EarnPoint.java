@@ -1,8 +1,9 @@
-package com.example.lenovo.myapplication.Activities;
+package com.example.lenovo.myapplication.Activities.Home;
 
-import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,18 +13,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.lenovo.myapplication.CustomGridview.Book;
 import com.example.lenovo.myapplication.CustomGridview.BooksAdapter;
 import com.example.lenovo.myapplication.CustomGridview.SubHeaderMenuAdapter;
 import com.example.lenovo.myapplication.R;
+import com.example.lenovo.myapplication.TestEmployee.Employee;
+import com.example.lenovo.myapplication.TestEmployee.EmployeeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ss.com.bannerslider.banners.Banner;
 import ss.com.bannerslider.banners.DrawableBanner;
-import ss.com.bannerslider.banners.RemoteBanner;
 import ss.com.bannerslider.views.BannerSlider;
 
 
@@ -31,13 +34,13 @@ import ss.com.bannerslider.views.BannerSlider;
  * Created by erwinlim on 12/02/18.
  */
 
-public class OneFragment extends Fragment implements View.OnClickListener{
+public class Activity_EarnPoint extends Fragment implements View.OnClickListener{
 
-    EditText editText;
-    Button chgButton;
-    Button switchButton;
+    private RecyclerView recyclerView;
+    private EmployeeAdapter adapter;
+    private ArrayList<Employee> employeeArrayList;
 
-    public OneFragment() {
+    public Activity_EarnPoint() {
         // Required empty public constructor
     }
 
@@ -50,12 +53,7 @@ public class OneFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        LinearLayout mainLayout = (LinearLayout )inflater.inflate(R.layout.fragment_one, container, false);
-//        editText = mainLayout.findViewById(R.id.inputField);
-//        chgButton = mainLayout.findViewById(R.id.changeText);
-//        chgButton.setOnClickListener(this);
-//        switchButton = mainLayout.findViewById(R.id.switchActivity);
-//        switchButton.setOnClickListener(this);
+        LinearLayout earnPointLayout = (LinearLayout )inflater.inflate(R.layout.fragment_earnpoint, container, false);
 
         Book mainRedemptionPulsa = new Book("Pulsa",1,R.drawable.ic_054_smartphone_1,"0");
         Book mainRedemptionPaketData = new Book("Paket Data",1,R.drawable.ic_012_browser_1,"0");
@@ -70,50 +68,29 @@ public class OneFragment extends Fragment implements View.OnClickListener{
         Book mainRedemptionGames = new Book("Games",1,R.drawable.ic_001_pin,"0");
         Book mainRedemptionCicilan = new Book("Cicilan",1,R.drawable.ic_005_shirt,"0");
 
-        Book subHeaderGridMenuScanTrans = new Book("Scan Transaksi",1,R.drawable.ic_011_gift_2,"0");
-        Book subHeaderGridMenuStamp = new Book("Stamp Program",1,R.drawable.ic_012_browser_1,"0");
-        Book subHeaderGridMenuScanQR = new Book("Scan QR To Pay",1,R.drawable.ic_054_smartphone_1,"0");
-        Book subHeaderGridMenuGetPoint = new Book("Bantuan",1,R.drawable.ic_054_smartphone_1,"0");
-
-        BannerSlider bannerSlider = mainLayout.findViewById(R.id.banner_slider1);
-        bannerSlider.setInterval(5000);
-        bannerSlider.setLoopSlides(true);
-        bannerSlider.setDefaultIndicator(1);
-        bannerSlider.clearAnimation();
-        List<Banner> banners=new ArrayList<>();
-        //add banner using image url
-        //banners.add(new RemoteBanner("Put banner image url here ..."));
-        //add banner using resource drawable
-        banners.add(new DrawableBanner(R.drawable.banner_creative_kids));
-        banners.add(new DrawableBanner(R.drawable.banner_instant));
-        banners.add(new DrawableBanner(R.drawable.banner_material_android_hive));
-        bannerSlider.setBanners(banners);
-
-
         Book[] books = {mainRedemptionPulsa, mainRedemptionPaketData, mainRedemptionPLN, mainRedemptionTelepon,
                 mainRedemptionBPJS, mainRedemptionPDAM, mainRedemptionVoucher, mainRedemptionEVoucher, mainRedemptionKuliner,
                 mainRedemptionElektronik, mainRedemptionGames, mainRedemptionCicilan};
-        Book[] subHeaderGridMenuItems = {subHeaderGridMenuScanTrans, subHeaderGridMenuStamp, subHeaderGridMenuScanQR,
-                subHeaderGridMenuGetPoint};
-
-        GridView gridView = mainLayout.findViewById(R.id.gridview);
         BooksAdapter booksAdapter = new BooksAdapter(getContext(), books);
-        gridView.setAdapter(booksAdapter);
 
-        GridView subHeaderGridMenu = mainLayout.findViewById(R.id.SubHeaderGridMenu);
-        SubHeaderMenuAdapter subHeaderGridMenuAdapter = new SubHeaderMenuAdapter(getContext(), subHeaderGridMenuItems);
-        subHeaderGridMenu.setAdapter(subHeaderGridMenuAdapter);
-        subHeaderGridMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Log.i("Menu clicked : ", String.valueOf(position));
-                if(position == 3){
+        employeeArrayList = new ArrayList<>();
+        employeeArrayList.add(new Employee("Belanja Online", "Dapatkan Cashback point dengan belanja online", booksAdapter));
+        employeeArrayList.add(new Employee("Bonus Point", "Dapatkan bonus point dengan melakukan aksi gratis", booksAdapter));
+        employeeArrayList.add(new Employee("Stamp Program", "Koleksi stamp dengan mengunjungi merchant favorit", booksAdapter));
+        employeeArrayList.add(new Employee("Belanja di Merchant", "Dapatkan Point dari setiap transaksi di merchant favorite", booksAdapter));
+        employeeArrayList.add(new Employee("Partner Excite", "Dapatkan point dari partner Excite", booksAdapter));
 
-                }
-            }
-        });
+        recyclerView = earnPointLayout.findViewById(R.id.recycler_view);
 
-        return mainLayout;
+        adapter = new EmployeeAdapter(employeeArrayList, getActivity());
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.setAdapter(adapter);
+
+        return earnPointLayout;
     }
 
 

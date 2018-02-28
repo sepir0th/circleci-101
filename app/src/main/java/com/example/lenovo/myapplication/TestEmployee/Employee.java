@@ -1,17 +1,21 @@
 package com.example.lenovo.myapplication.TestEmployee;
 
+import android.widget.GridView;
+
+import com.example.lenovo.myapplication.CustomGridview.BooksAdapter;
+
 /**
  * Created by erwinlim on 23/02/18.
  */
 public class Employee {
     private String employeeName;
     private String employeeEmail;
-    private String employeePhone;
+    private BooksAdapter subMenu;
 
-    public Employee(String employeeName, String employeeEmail, String employeePhone) {
+    public Employee(String employeeName, String employeeEmail, BooksAdapter subMenu) {
         this.employeeName = employeeName;
         this.employeeEmail = employeeEmail;
-        this.employeePhone = employeePhone;
+        this.subMenu = subMenu;
     }
 
     /*Getters and setters to access the private members*/
@@ -31,11 +35,11 @@ public class Employee {
         this.employeeEmail = employeeEmail;
     }
 
-    public String getEmployeePhone() {
-        return employeePhone;
+    public BooksAdapter getGridViewMenu() {
+        return subMenu;
     }
 
-    public void setEmployeePhone(String employeePhone) {
-        this.employeePhone = employeePhone;
+    public void setSubMenu(BooksAdapter subMenu) {
+        this.subMenu = subMenu;
     }
 }

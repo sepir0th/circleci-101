@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+    <com.example.lenovo.myapplication.Promo.MyLinearLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@android:color/transparent">
+        <Button
+            android:id="@+id/content"
+            android:layout_width="190dp"
+            android:layout_height="120dp"
+            android:background="@android:color/black">
+        </Button>
+    </com.example.lenovo.myapplication.Promo.MyLinearLayout>>
+</LinearLayout>

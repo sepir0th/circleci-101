@@ -34,4 +34,11 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_list_earn_points_menu">ListEarnPointsMenu</string>
+    <string name="title_home">Food &amp; Beverage</string>
+    <string name="title_dashboard">Luxury Dining</string>
+    <string name="title_notifications">Health &amp; Beauty</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

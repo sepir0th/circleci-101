@@ -3,7 +3,6 @@
     package="com.example.lenovo.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCOUNT_MANAGER" />
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -44,6 +43,10 @@
             android:name="io.fabric.ApiKey"
             android:value="6c7ff41da047fa088f9c7de0bc9d2c4ff3b796ea" />
 
+        <activity
+            android:name=".Activities.EarnPointDetails.ListEarnPointsMenu"
+            android:label="@string/title_activity_list_earn_points_menu" />
+        <activity android:name=".Activities.MerchantDetails.MerchantDetails"></activity>
     </application>
 
 </manifest>

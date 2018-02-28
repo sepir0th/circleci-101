@@ -1,27 +1,27 @@
-package com.example.lenovo.myapplication.Activities;
+package com.example.lenovo.myapplication.Activities.EarnPointDetails;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-
-import com.example.lenovo.myapplication.Activities.Home.Activity_Home;
-import com.example.lenovo.myapplication.Promo.MyPagerAdapter;
-import com.example.lenovo.myapplication.R;
-
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.example.lenovo.myapplication.Activities.Home.Activity_Home;
+import com.example.lenovo.myapplication.Activities.MainActivity;
+import com.example.lenovo.myapplication.Activities.TwoFragment;
+import com.example.lenovo.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * Created by LENOVO on 06/02/2018.
- */
-public class MainActivity extends AppCompatActivity {
+public class ListEarnPointsMenu extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list_earn_points_menu);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Activity_Home(), "Beranda");
-        adapter.addFragment(new TwoFragment(), "Info");
-        adapter.addFragment(new TwoFragment(), "Bantuan");
-        adapter.addFragment(new TwoFragment(), "History");
+        adapter.addFragment(new ListEarnPointsMenuFragment(), "Food & Beverage");
+        adapter.addFragment(new ListEarnPointsMenuFragment(), "Luxury Dining");
+        adapter.addFragment(new ListEarnPointsMenuFragment(), "Health & Beauty");
+        adapter.addFragment(new ListEarnPointsMenuFragment(), "Stationary");
         viewPager.setAdapter(adapter);
     }
 

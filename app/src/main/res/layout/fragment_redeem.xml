@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/windowBackground"
-    tools:context=".Activities.OneFragment">
+    tools:context=".Activities.Home.Activity_Redeem">
 
     <!-- Scrollable Item below header and above footer -->
     <ScrollView
@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:columnWidth="100dp"
-                android:numColumns="4"
+                android:numColumns="3"
                 android:paddingVertical="10dp"
                 android:verticalSpacing="10dp"
                 android:horizontalSpacing="10dp"/>
@@ -49,35 +49,11 @@
                 android:verticalSpacing="2dp"
                 android:horizontalSpacing="2dp"/>
 
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/GridHeader"-->
-            <!--&gt;-->
-
-            <!--<EditText-->
-            <!--android:id="@+id/inputField"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-
-            <!--<Button-->
-            <!--android:id="@+id/changeText"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="New Button"/>-->
-
-            <!--<Button-->
-            <!--android:id="@+id/switchActivity"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Change Text"/>-->
-            <!--</LinearLayout>-->
-
-            <ss.com.bannerslider.views.BannerSlider
-                android:id="@+id/banner_slider1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
+            <android.support.v4.view.ViewPager
+                android:background="@color/colorAccent"
+                android:id="@+id/myviewpager"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"/>
         </LinearLayout>
     </ScrollView>
 

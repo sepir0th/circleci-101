@@ -10,9 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.example.lenovo.myapplication.CustomGridview.Book;
+import com.example.lenovo.myapplication.CustomGridview.BooksAdapter;
 import com.example.lenovo.myapplication.R;
 import com.example.lenovo.myapplication.TestEmployee.Employee;
 import com.example.lenovo.myapplication.TestEmployee.EmployeeAdapter;
@@ -54,15 +57,35 @@ public class TwoFragment extends Fragment implements View.OnClickListener{
         switchButton = mainLayout.findViewById(R.id.switchActivityTwo);
         switchButton.setOnClickListener(this);
 
+        Book mainRedemptionPulsa = new Book("Pulsa",1,R.drawable.ic_054_smartphone_1,"0");
+        Book mainRedemptionPaketData = new Book("Paket Data",1,R.drawable.ic_012_browser_1,"0");
+        Book mainRedemptionPLN = new Book("PLN",1,R.drawable.ic_009_startup,"0");
+        Book mainRedemptionTelepon = new Book("Telepon",1,R.drawable.ic_002_credit_card_6,"0");
+        Book mainRedemptionBPJS = new Book("BPJS",1,R.drawable.ic_003_shopping_bag_2,"0");
+        Book mainRedemptionPDAM = new Book("PDAM",1,R.drawable.ic_006_coding,"0");
+        Book mainRedemptionVoucher = new Book("Voucher",1,R.drawable.ic_007_analytics_1,"0");
+        Book mainRedemptionEVoucher = new Book("e-Voucher",1,R.drawable.ic_013_purse,"0");
+        Book mainRedemptionKuliner = new Book("Kuliner",1,R.drawable.ic_015_gift_1,"0");
+        Book mainRedemptionElektronik = new Book("Elektronik",1,R.drawable.ic_014_buy_1,"0");
+        Book mainRedemptionGames = new Book("Games",1,R.drawable.ic_001_pin,"0");
+        Book mainRedemptionCicilan = new Book("Cicilan",1,R.drawable.ic_005_shirt,"0");
+
+        Book[] books = {mainRedemptionPulsa, mainRedemptionPaketData, mainRedemptionPLN, mainRedemptionTelepon,
+                mainRedemptionBPJS, mainRedemptionPDAM, mainRedemptionVoucher, mainRedemptionEVoucher, mainRedemptionKuliner,
+                mainRedemptionElektronik, mainRedemptionGames, mainRedemptionCicilan};
+        BooksAdapter booksAdapter = new BooksAdapter(getContext(), books);
+
+
         employeeArrayList = new ArrayList<>();
-        employeeArrayList.add(new Employee("Employee1", "emp1@example.com", "123456789"));
-        employeeArrayList.add(new Employee("Employee2", "emp2@example.com", "987654321"));
-        employeeArrayList.add(new Employee("Employee3", "emp3@example.com", "789456123"));
-        employeeArrayList.add(new Employee("Employee4", "emp4@example.com", "321654987"));
+        employeeArrayList.add(new Employee("Belanja Online", "Dapatkan Cashback point dengan belanja online", booksAdapter));
+        employeeArrayList.add(new Employee("Bonus Point", "Dapatkan bonus point dengan melakukan aksi gratis", booksAdapter));
+        employeeArrayList.add(new Employee("Stamp Program", "Koleksi stamp dengan mengunjungi merchant favorit", booksAdapter));
+        employeeArrayList.add(new Employee("Belanja di Merchant", "Dapatkan Point dari setiap transaksi di merchant favorite", booksAdapter));
+        employeeArrayList.add(new Employee("Partner Excite", "Dapatkan point dari partner Excite", booksAdapter));
 
         recyclerView = (RecyclerView) mainLayout.findViewById(R.id.recycler_view);
 
-        adapter = new EmployeeAdapter(employeeArrayList);
+        adapter = new EmployeeAdapter(employeeArrayList, getActivity());
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
