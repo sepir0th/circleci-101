@@ -22,7 +22,7 @@ module Google
     module BooksV1
       # Books API
       #
-      # Searches for books and manages your Google Books library.
+      # Searches for gridViewMenus and manages your Google Books library.
       #
       # @example
       #    require 'google/apis/books_v1'
@@ -30,7 +30,7 @@ module Google
       #    Books = Google::Apis::BooksV1 # Alias the module
       #    service = Books::BooksService.new
       #
-      # @see https://developers.google.com/books/docs/v1/getting_started
+      # @see https://developers.google.com/gridViewMenus/docs/v1/getting_started
       class BooksService < Google::Apis::Core::BaseService
         # @return [String]
         #  API key. Your API key identifies your project and provides you with API access,
@@ -49,7 +49,7 @@ module Google
         attr_accessor :user_ip
 
         def initialize
-          super('https://www.googleapis.com/', 'books/v1/')
+          super('https://www.googleapis.com/', 'gridViewMenus/v1/')
         end
         
         # Retrieves metadata for a specific bookshelf for the specified user.
@@ -139,7 +139,7 @@ module Google
         # @param [Fixnum] max_results
         #   Maximum number of results to return
         # @param [Boolean] show_preorders
-        #   Set to true to show pre-ordered books. Defaults to false.
+        #   Set to true to show pre-ordered gridViewMenus. Defaults to false.
         # @param [String] source
         #   String to identify the originator of this request.
         # @param [Fixnum] start_index
@@ -224,9 +224,9 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Remove the book and its contents
+        # Remove the gridViewMenu and its contents
         # @param [String] volume_id
-        #   The id of the book to be removed.
+        #   The id of the gridViewMenu to be removed.
         # @param [String] fields
         #   Selector specifying which fields to include in a partial response.
         # @param [String] quota_user
@@ -829,7 +829,7 @@ module Google
         # @param [String] locale
         #   ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
         # @param [Boolean] show_preorders
-        #   Set to true to show pre-ordered books. Defaults to false.
+        #   Set to true to show pre-ordered gridViewMenus. Defaults to false.
         # @param [Array<String>, String] volume_ids
         #   The volume(s) to request download restrictions for.
         # @param [String] fields
@@ -1139,7 +1139,7 @@ module Google
         # @param [String] volume_id
         #   ID of volume to add.
         # @param [String] reason
-        #   The reason for which the book is added to the library.
+        #   The reason for which the gridViewMenu is added to the library.
         # @param [String] source
         #   String to identify the originator of this request.
         # @param [String] fields
@@ -1334,7 +1334,7 @@ module Google
         # @param [String] volume_id
         #   ID of volume to remove.
         # @param [String] reason
-        #   The reason for which the book is removed from the library.
+        #   The reason for which the gridViewMenu is removed from the library.
         # @param [String] source
         #   String to identify the originator of this request.
         # @param [String] fields
@@ -1382,7 +1382,7 @@ module Google
         # @param [String] q
         #   Full-text search query string in this bookshelf.
         # @param [Boolean] show_preorders
-        #   Set to true to show pre-ordered books. Defaults to false.
+        #   Set to true to show pre-ordered gridViewMenus. Defaults to false.
         # @param [String] source
         #   String to identify the originator of this request.
         # @param [Fixnum] start_index
@@ -1643,7 +1643,7 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Returns a stream of personalized book clusters
+        # Returns a stream of personalized gridViewMenu clusters
         # @param [String] locale
         #   ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
         #   generating recommendations.
@@ -1968,7 +1968,7 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Performs a book search.
+        # Performs a gridViewMenu search.
         # @param [String] q
         #   Full-text search query string.
         # @param [String] download
@@ -1976,7 +1976,7 @@ module Google
         # @param [String] filter
         #   Filter search results.
         # @param [String] lang_restrict
-        #   Restrict results to books with this language code.
+        #   Restrict results to gridViewMenus with this language code.
         # @param [String] library_restrict
         #   Restrict search to this user's library.
         # @param [String] max_allowed_maturity_rating
@@ -1989,11 +1989,11 @@ module Google
         # @param [String] partner
         #   Restrict and brand results for partner ID.
         # @param [String] print_type
-        #   Restrict to books or magazines.
+        #   Restrict to gridViewMenus or magazines.
         # @param [String] projection
         #   Restrict information returned to a set of selected fields.
         # @param [Boolean] show_preorders
-        #   Set to true to show books available for preorder. Defaults to false.
+        #   Set to true to show gridViewMenus available for preorder. Defaults to false.
         # @param [String] source
         #   String to identify the originator of this request.
         # @param [Fixnum] start_index
@@ -2043,7 +2043,7 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Return a list of associated books.
+        # Return a list of associated gridViewMenus.
         # @param [String] volume_id
         #   ID of the source volume.
         # @param [String] association
@@ -2092,9 +2092,9 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Return a list of books in My Library.
+        # Return a list of gridViewMenus in My Library.
         # @param [Array<String>, String] acquire_method
-        #   How the book was acquired
+        #   How the gridViewMenu was acquired
         # @param [String] country
         #   ISO-3166-1 code to override the IP-based location.
         # @param [String] locale
@@ -2147,7 +2147,7 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Return a list of recommended books for the current user.
+        # Return a list of recommended gridViewMenus for the current user.
         # @param [String] locale
         #   ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
         #   generating recommendations.
@@ -2190,7 +2190,7 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Rate a recommended book for the current user.
+        # Rate a recommended gridViewMenu for the current user.
         # @param [String] rating
         #   Rating to be given to the volume.
         # @param [String] volume_id
@@ -2235,7 +2235,7 @@ module Google
           execute_or_queue_command(command, &block)
         end
         
-        # Return a list of books uploaded by the current user.
+        # Return a list of gridViewMenus uploaded by the current user.
         # @param [String] locale
         #   ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
         #   generating recommendations.

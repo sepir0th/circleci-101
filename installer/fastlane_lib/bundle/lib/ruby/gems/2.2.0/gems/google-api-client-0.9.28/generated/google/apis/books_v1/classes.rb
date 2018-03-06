@@ -1885,7 +1885,7 @@ module Google
         attr_accessor :updated
       
         # The current version of this layer's volume annotations. Note that this version
-        # applies only to the data in the books.layers.volumeAnnotations.* responses.
+        # applies only to the data in the gridViewMenus.layers.volumeAnnotations.* responses.
         # The actual annotation data is versioned separately.
         # Corresponds to the JSON property `volumeAnnotationsVersion`
         # @return [String]
@@ -2634,7 +2634,7 @@ module Google
         include Google::Apis::Core::Hashable
       
         # Any information about a volume related to reading or obtaining that volume
-        # text. This information can depend on country (books may be public domain in
+        # text. This information can depend on country (gridViewMenus may be public domain in
         # one country but not in another, e.g.).
         # Corresponds to the JSON property `accessInfo`
         # @return [Google::Apis::BooksV1::Volume::AccessInfo]
@@ -2668,7 +2668,7 @@ module Google
       
         # Any information about a volume related to the eBookstore and/or
         # purchaseability. This information can depend on the country where the request
-        # originates from (i.e. books may not be for sale in certain countries).
+        # originates from (i.e. gridViewMenus may not be for sale in certain countries).
         # Corresponds to the JSON property `saleInfo`
         # @return [Google::Apis::BooksV1::Volume::SaleInfo]
         attr_accessor :sale_info
@@ -2684,7 +2684,7 @@ module Google
         attr_accessor :self_link
       
         # User specific information related to this volume. (e.g. page this user last
-        # read or whether they purchased this book)
+        # read or whether they purchased this gridViewMenu)
         # Corresponds to the JSON property `userInfo`
         # @return [Google::Apis::BooksV1::Volume::UserInfo]
         attr_accessor :user_info
@@ -2714,7 +2714,7 @@ module Google
         end
         
         # Any information about a volume related to reading or obtaining that volume
-        # text. This information can depend on country (books may be public domain in
+        # text. This information can depend on country (gridViewMenus may be public domain in
         # one country but not in another, e.g.).
         class AccessInfo
           include Google::Apis::Core::Hashable
@@ -2768,7 +2768,7 @@ module Google
           # @return [Google::Apis::BooksV1::Volume::AccessInfo::Pdf]
           attr_accessor :pdf
         
-          # Whether or not this book is public domain in the country listed above.
+          # Whether or not this gridViewMenu is public domain in the country listed above.
           # Corresponds to the JSON property `publicDomain`
           # @return [Boolean]
           attr_accessor :public_domain
@@ -2796,7 +2796,7 @@ module Google
           # or UNKNOWN. This value depends on the country listed above. A value of PARTIAL
           # means that the publisher has allowed some portion of the volume to be viewed
           # publicly, without purchase. This can apply to eBooks as well as non-eBooks.
-          # Public domain books will always have a value of ALL_PAGES.
+          # Public domain gridViewMenus will always have a value of ALL_PAGES.
           # Corresponds to the JSON property `viewability`
           # @return [String]
           attr_accessor :viewability
@@ -2900,7 +2900,7 @@ module Google
         class LayerInfo
           include Google::Apis::Core::Hashable
         
-          # A layer should appear here if and only if the layer exists for this book.
+          # A layer should appear here if and only if the layer exists for this gridViewMenu.
           # Corresponds to the JSON property `layers`
           # @return [Array<Google::Apis::BooksV1::Volume::LayerInfo::Layer>]
           attr_accessor :layers
@@ -2924,7 +2924,7 @@ module Google
             attr_accessor :layer_id
           
             # The current version of this layer's volume annotations. Note that this version
-            # applies only to the data in the books.layers.volumeAnnotations.* responses.
+            # applies only to the data in the gridViewMenus.layers.volumeAnnotations.* responses.
             # The actual annotation data is versioned separately.
             # Corresponds to the JSON property `volumeAnnotationsVersion`
             # @return [String]
@@ -2963,7 +2963,7 @@ module Google
         
         # Any information about a volume related to the eBookstore and/or
         # purchaseability. This information can depend on the country where the request
-        # originates from (i.e. books may not be for sale in certain countries).
+        # originates from (i.e. gridViewMenus may not be for sale in certain countries).
         class SaleInfo
           include Google::Apis::Core::Hashable
         
@@ -2994,19 +2994,19 @@ module Google
           # @return [Array<Google::Apis::BooksV1::Volume::SaleInfo::Offer>]
           attr_accessor :offers
         
-          # The date on which this book is available for sale.
+          # The date on which this gridViewMenu is available for sale.
           # Corresponds to the JSON property `onSaleDate`
           # @return [DateTime]
           attr_accessor :on_sale_date
         
-          # The actual selling price of the book. This is the same as the suggested retail
+          # The actual selling price of the gridViewMenu. This is the same as the suggested retail
           # or list price unless there are offers or discounts on this volume. (In LITE
           # projection.)
           # Corresponds to the JSON property `retailPrice`
           # @return [Google::Apis::BooksV1::Volume::SaleInfo::RetailPrice]
           attr_accessor :retail_price
         
-          # Whether or not this book is available for sale or offered for free in the
+          # Whether or not this gridViewMenu is available for sale or offered for free in the
           # Google eBookstore for the country listed above. Possible values are FOR_SALE,
           # FOR_RENTAL_ONLY, FOR_SALE_AND_RENTAL, FREE, NOT_FOR_SALE, or FOR_PREORDER.
           # Corresponds to the JSON property `saleability`
@@ -3173,7 +3173,7 @@ module Google
             end
           end
           
-          # The actual selling price of the book. This is the same as the suggested retail
+          # The actual selling price of the gridViewMenu. This is the same as the suggested retail
           # or list price unless there are offers or discounts on this volume. (In LITE
           # projection.)
           class RetailPrice
@@ -3221,7 +3221,7 @@ module Google
         end
         
         # User specific information related to this volume. (e.g. page this user last
-        # read or whether they purchased this book)
+        # read or whether they purchased this gridViewMenu)
         class UserInfo
           include Google::Apis::Core::Hashable
         
@@ -3276,7 +3276,7 @@ module Google
           attr_accessor :is_family_sharing_disabled_by_fop
           alias_method :is_family_sharing_disabled_by_fop?, :is_family_sharing_disabled_by_fop
         
-          # Whether or not this volume is currently in "my books."
+          # Whether or not this volume is currently in "my gridViewMenus."
           # Corresponds to the JSON property `isInMyBooks`
           # @return [Boolean]
           attr_accessor :is_in_my_books
@@ -3308,12 +3308,12 @@ module Google
           # @return [Google::Apis::BooksV1::ReadingPosition]
           attr_accessor :reading_position
         
-          # Period during this book is/was a valid rental.
+          # Period during this gridViewMenu is/was a valid rental.
           # Corresponds to the JSON property `rentalPeriod`
           # @return [Google::Apis::BooksV1::Volume::UserInfo::RentalPeriod]
           attr_accessor :rental_period
         
-          # Whether this book is an active or an expired rental.
+          # Whether this gridViewMenu is an active or an expired rental.
           # Corresponds to the JSON property `rentalState`
           # @return [String]
           attr_accessor :rental_state
@@ -3435,7 +3435,7 @@ module Google
             end
           end
           
-          # Period during this book is/was a valid rental.
+          # Period during this gridViewMenu is/was a valid rental.
           class RentalPeriod
             include Google::Apis::Core::Hashable
           
@@ -4004,7 +4004,7 @@ module Google
         # The version string for all of the volume annotations in this layer (not just
         # the ones in this response). Note: the version string doesn't apply to the
         # annotation data, just the information in this response (e.g. the location of
-        # annotations in the book).
+        # annotations in the gridViewMenu).
         # Corresponds to the JSON property `version`
         # @return [String]
         attr_accessor :version
@@ -4070,7 +4070,7 @@ module Google
         # @return [String]
         attr_accessor :kind
       
-        # Short book title in the context of the series.
+        # Short gridViewMenu title in the context of the series.
         # Corresponds to the JSON property `shortSeriesBookTitle`
         # @return [String]
         attr_accessor :short_series_book_title
@@ -4101,12 +4101,12 @@ module Google
           # @return [Array<Google::Apis::BooksV1::Volumeseriesinfo::VolumeSeries::Issue>]
           attr_accessor :issue
         
-          # The book order number in the series.
+          # The gridViewMenu order number in the series.
           # Corresponds to the JSON property `orderNumber`
           # @return [Fixnum]
           attr_accessor :order_number
         
-          # The book type in the context of series. Examples - Single Issue, Collection
+          # The gridViewMenu type in the context of series. Examples - Single Issue, Collection
           # Edition, etc.
           # Corresponds to the JSON property `seriesBookType`
           # @return [String]

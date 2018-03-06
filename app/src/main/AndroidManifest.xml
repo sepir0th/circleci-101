@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
-        <activity android:name=".WelcomeSliders.WelcomeActivity" android:theme="@style/SplashTheme">
+        <activity
+            android:name=".WelcomeSliders.WelcomeActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,11 +26,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.MainActivity">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Activities.SecondActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -47,7 +44,12 @@
             android:name=".Activities.EarnPointDetails.ListEarnPointsMenu"
             android:label="@string/title_activity_list_earn_points_menu" />
         <activity android:name=".Activities.MerchantDetails.MerchantDetails" />
-        <activity android:name=".Activities.ExcitePartner.ExcitePartnerMaster"></activity>
+        <activity android:name=".Activities.ExcitePartner.ExcitePartnerMaster" />
+        <activity android:name=".Activities.Search.SearchActivity" />
+        <activity
+            android:name=".Activities.RedeemPointsDetails.RedeemDetailsHome"
+            android:label="@string/title_activity_redeem_details_home"
+            android:theme="@style/MyMaterialTheme"></activity>
     </application>
 
 </manifest>

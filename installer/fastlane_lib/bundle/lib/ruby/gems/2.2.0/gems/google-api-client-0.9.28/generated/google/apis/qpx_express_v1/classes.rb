@@ -927,7 +927,7 @@ module Google
         # @return [Google::Apis::QpxExpressV1::TimeOfDayRange]
         attr_accessor :permitted_departure_time
       
-        # Prefer solutions that book in this cabin for this slice. Allowed values are
+        # Prefer solutions that gridViewMenu in this cabin for this slice. Allowed values are
         # COACH, PREMIUM_COACH, BUSINESS, and FIRST.
         # Corresponds to the JSON property `preferredCabin`
         # @return [String]

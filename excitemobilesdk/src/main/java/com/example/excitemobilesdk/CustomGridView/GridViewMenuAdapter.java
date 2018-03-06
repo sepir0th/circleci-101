@@ -1,4 +1,4 @@
-package com.example.lenovo.myapplication.CustomGridview;
+package com.example.excitemobilesdk.CustomGridView;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,26 +8,26 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.lenovo.myapplication.R;
+import com.example.excitemobilesdk.R;
 
 /**
  * Created by erwinlim on 13/02/18.
  */
 
-public class SubHeaderMenuAdapter extends BaseAdapter {
+public class GridViewMenuAdapter extends BaseAdapter {
 
     private final Context mContext;
-    private final Book[] books;
+    private final GridViewMenu[] gridViewMenus;
 
     // 1
-    public SubHeaderMenuAdapter(Context context, Book[] books) {
+    public GridViewMenuAdapter(Context context, GridViewMenu[] gridViewMenus) {
         this.mContext = context;
-        this.books = books;
+        this.gridViewMenus = gridViewMenus;
     }
 
     @Override
     public int getCount() {
-        return books.length;
+        return gridViewMenus.length;
     }
 
     @Override
@@ -43,19 +43,19 @@ public class SubHeaderMenuAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         // 1
-        final Book book = books[position];
+        final GridViewMenu gridViewMenu = gridViewMenus[position];
 
         // 2
         if (convertView == null) {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-            convertView = layoutInflater.inflate(R.layout.linearlayout_subheadermenu, null);
+            convertView = layoutInflater.inflate(R.layout.linearlayout_book, null);
         }
 
         final TextView productName = convertView.findViewById(R.id.textview_book_name);
         final ImageView productImg = convertView.findViewById(R.id.imageview_cover_art);
 
-        productName.setText(book.getName());
-        productImg.setImageResource(book.getImageResource());
+        productName.setText(gridViewMenu.getName());
+        productImg.setImageResource(gridViewMenu.getImageResource());
 
         return convertView;
     }

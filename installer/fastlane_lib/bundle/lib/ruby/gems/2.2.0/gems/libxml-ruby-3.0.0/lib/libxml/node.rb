@@ -98,7 +98,7 @@ module LibXML
       # -------  Traversal  ----------------
       # Iterates over this node's attributes.
       #
-      #  doc = XML::Document.new('model/books.xml')
+      #  doc = XML::Document.new('model/gridViewMenus.xml')
       #  doc.root.each_attr {|attr| puts attr}
       def each_attr
         attributes.each do |attr|
@@ -109,7 +109,7 @@ module LibXML
       # Iterates over this node's child elements (nodes
       # that have a node_type == ELEMENT_NODE).
       #
-      #  doc = XML::Document.new('model/books.xml')
+      #  doc = XML::Document.new('model/gridViewMenus.xml')
       #  doc.root.each_element {|element| puts element}
       def each_element
         each do |node|

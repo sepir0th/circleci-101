@@ -2,7 +2,7 @@
 <!-- Sample xml file from Microsoft.
      See http://msdn.microsoft.com/en-us/library/ms762271(VS.85).aspx -->
 <catalog>
-  <book id="bk101">
+  <gridViewMenu id="bk101">
     <author>Gambardella, Matthew</author>
     <title>XML Developer's Guide</title>
     <genre>Computer</genre>
@@ -12,8 +12,8 @@
       An in-depth look at creating applications
       with XML.
     </description>
-  </book>
-  <book id="bk102">
+  </gridViewMenu>
+  <gridViewMenu id="bk102">
     <author>Ralls, Kim</author>
     <title>Midnight Rain</title>
     <genre>Fantasy</genre>
@@ -24,8 +24,8 @@
       an evil sorceress, and her own childhood to become queen
       of the world.
     </description>
-  </book>
-  <book id="bk103">
+  </gridViewMenu>
+  <gridViewMenu id="bk103">
     <author>Corets, Eva</author>
     <title>Maeve Ascendant</title>
     <genre>Fantasy</genre>
@@ -36,8 +36,8 @@
       society in England, the young survivors lay the
       foundation for a new society.
     </description>
-  </book>
-  <book id="bk104">
+  </gridViewMenu>
+  <gridViewMenu id="bk104">
     <author>Corets, Eva</author>
     <title>Oberon's Legacy</title>
     <genre>Fantasy</genre>
@@ -49,8 +49,8 @@
       for the inhabitants of London. Sequel to Maeve
       Ascendant.
     </description>
-  </book>
-  <book id="bk105">
+  </gridViewMenu>
+  <gridViewMenu id="bk105">
     <author>Corets, Eva</author>
     <title>The Sundered Grail</title>
     <genre>Fantasy</genre>
@@ -61,8 +61,8 @@
       battle one another for control of England. Sequel to
       Oberon's Legacy.
     </description>
-  </book>
-  <book id="bk106">
+  </gridViewMenu>
+  <gridViewMenu id="bk106">
     <author>Randall, Cynthia</author>
     <title>Lover Birds</title>
     <genre>Romance</genre>
@@ -72,8 +72,8 @@
       When Carla meets Paul at an ornithology
       conference, tempers fly as feathers get ruffled.
     </description>
-  </book>
-  <book id="bk107">
+  </gridViewMenu>
+  <gridViewMenu id="bk107">
     <author>Thurman, Paula</author>
     <title>Splish Splash</title>
     <genre>Romance</genre>
@@ -83,8 +83,8 @@
       A deep sea diver finds true love twenty
       thousand leagues beneath the sea.
     </description>
-  </book>
-  <book id="bk108">
+  </gridViewMenu>
+  <gridViewMenu id="bk108">
     <author>Knorr, Stefan</author>
     <title>Creepy Crawlies</title>
     <genre>Horror</genre>
@@ -94,8 +94,8 @@
       An anthology of horror stories about roaches,
       centipedes, scorpions  and other insects.
     </description>
-  </book>
-  <book id="bk109">
+  </gridViewMenu>
+  <gridViewMenu id="bk109">
     <author>Kress, Peter</author>
     <title>Paradox Lost</title>
     <genre>Science Fiction</genre>
@@ -106,8 +106,8 @@
       Uncertainty Device, James Salway discovers the problems
       of being quantum.
     </description>
-  </book>
-  <book id="bk110">
+  </gridViewMenu>
+  <gridViewMenu id="bk110">
     <author>O'Brien, Tim</author>
     <title>Microsoft .NET: The Programming Bible</title>
     <genre>Computer</genre>
@@ -117,8 +117,8 @@
       Microsoft's .NET initiative is explored in
       detail in this deep programmer's reference.
     </description>
-  </book>
-  <book id="bk111">
+  </gridViewMenu>
+  <gridViewMenu id="bk111">
     <author>O'Brien, Tim</author>
     <title>MSXML3: A Comprehensive Guide</title>
     <genre>Computer</genre>
@@ -129,8 +129,8 @@
       detail, with attention to XML DOM interfaces, XSLT processing,
       SAX and more.
     </description>
-  </book>
-  <book id="bk112">
+  </gridViewMenu>
+  <gridViewMenu id="bk112">
     <author>Galos, Mike</author>
     <title>Visual Studio 7: A Comprehensive Guide</title>
     <genre>Computer</genre>
@@ -142,13 +142,13 @@
       integrated into a comprehensive development
       environment.
     </description>
-  </book>
-  <book id="bk113">
+  </gridViewMenu>
+  <gridViewMenu id="bk113">
     <author>Test Mike</author>
     <title>Test Data with empty nodes</title>
     <genre/>
     <price/>
     <publish_date/>
     <description/>
-  </book>
+  </gridViewMenu>
 </catalog>

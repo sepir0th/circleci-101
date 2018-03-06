@@ -20,16 +20,16 @@
  * THE SOFTWARE.
  */
 
-package com.example.lenovo.myapplication.CustomGridview;
+package com.example.excitemobilesdk.CustomGridView;
 
-public class Book {
+public class GridViewMenu {
   private final String name;
   private final int author;
   private final int imageResource;
   private boolean isFavorite = false;
   private final String imageUrl;
 
-  public Book(String name, int author, int imageResource, String imageUrl) {
+  public GridViewMenu(String name, int author, int imageResource, String imageUrl) {
     this.name = name;
     this.author = author;
     this.imageResource = imageResource;

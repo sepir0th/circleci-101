@@ -40,7 +40,7 @@ module Nokogiri
       end
 
       def test_validate_invalid_document
-        # Empty address book is not allowed
+        # Empty address gridViewMenu is not allowed
         read_doc = '<addressBook></addressBook>'
 
         assert errors = @schema.validate(Nokogiri::XML(read_doc))

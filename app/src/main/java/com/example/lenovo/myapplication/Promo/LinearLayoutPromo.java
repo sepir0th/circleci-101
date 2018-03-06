@@ -5,14 +5,14 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-public class MyLinearLayout extends LinearLayout {
-    private float scale = MyPagerAdapter.BIG_SCALE;
+public class LinearLayoutPromo extends LinearLayout {
+    private float scale = PromoAdapter.BIG_SCALE;
 
-    public MyLinearLayout(Context context, AttributeSet attrs) {
+    public LinearLayoutPromo(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public MyLinearLayout(Context context) {
+    public LinearLayoutPromo(Context context) {
         super(context);
     }
 

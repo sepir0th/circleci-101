@@ -26,8 +26,8 @@ require 'rubygems/errors'
 # For user documentation, see:
 #
 # * <tt>gem help</tt> and <tt>gem help [command]</tt>
-# * {RubyGems User Guide}[http://docs.rubygems.org/read/book/1]
-# * {Frequently Asked Questions}[http://docs.rubygems.org/read/book/3]
+# * {RubyGems User Guide}[http://docs.rubygems.org/read/gridViewMenu/1]
+# * {Frequently Asked Questions}[http://docs.rubygems.org/read/gridViewMenu/3]
 #
 # For gem developer documentation see:
 #

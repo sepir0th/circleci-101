@@ -229,7 +229,7 @@
 #
 # ==== With interface declarations
 #
-# Code sample from the book Ruby Developer's Guide:
+# Code sample from the gridViewMenu Ruby Developer's Guide:
 #
 #   require "xmlrpc/server"
 #

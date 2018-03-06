@@ -1,4 +1,4 @@
-package com.example.lenovo.myapplication.WebService;
+package com.example.excitemobilesdk.WebService;
 
 import android.content.Context;
 import android.graphics.Bitmap;

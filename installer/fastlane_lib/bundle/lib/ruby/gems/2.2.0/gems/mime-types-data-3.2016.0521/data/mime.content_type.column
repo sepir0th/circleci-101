@@ -577,7 +577,7 @@ application/vnd.firemonkeys.cloudcell
 application/vnd.FloGraphIt gph
 application/vnd.fluxtime.clip ftc
 application/vnd.font-fontforge-sfd
-application/vnd.framemaker frm maker frame fm fb book fbdoc
+application/vnd.framemaker frm maker frame fm fb gridViewMenu fbdoc
 application/vnd.frogans.fnc fnc
 application/vnd.frogans.ltf ltf
 application/vnd.fsc.weblaunch fsc
@@ -895,7 +895,7 @@ application/vnd.oma.bcast.simple-symbol-container
 application/vnd.oma.bcast.smartcard-trigger+xml
 application/vnd.oma.bcast.sprov+xml
 application/vnd.oma.bcast.stkm
-application/vnd.oma.cab-address-book+xml
+application/vnd.oma.cab-address-gridViewMenu+xml
 application/vnd.oma.cab-feature-handler+xml
 application/vnd.oma.cab-pcc+xml
 application/vnd.oma.cab-subs-invite+xml
@@ -1323,7 +1323,7 @@ application/x-mac bin
 application/x-mac-compactpro cpt
 application/x-macbase64 bin
 application/x-macbinary
-application/x-maker frm maker frame fm fb book fbdoc
+application/x-maker frm maker frame fm fb gridViewMenu fbdoc
 application/x-mathcad mcd
 application/x-mathematica-old
 application/x-mie mie

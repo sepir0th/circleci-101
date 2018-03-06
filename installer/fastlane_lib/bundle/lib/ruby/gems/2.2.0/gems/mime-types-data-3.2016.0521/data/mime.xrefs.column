@@ -895,7 +895,7 @@ person^OMNA-Open_Mobile_Naming_Authority^Uwe_Rauschenbach|template^application/v
 person^OMNA-Open_Mobile_Naming_Authority^Uwe_Rauschenbach|template^application/vnd.oma.bcast.smartcard-trigger+xml
 person^OMNA-Open_Mobile_Naming_Authority^Uwe_Rauschenbach|template^application/vnd.oma.bcast.sprov+xml
 person^OMNA-Open_Mobile_Naming_Authority^Uwe_Rauschenbach|template^application/vnd.oma.bcast.stkm
-person^Hao_Wang^OMA|template^application/vnd.oma.cab-address-book+xml
+person^Hao_Wang^OMA|template^application/vnd.oma.cab-address-gridViewMenu+xml
 person^Hao_Wang^OMA|template^application/vnd.oma.cab-feature-handler+xml
 person^Hao_Wang^OMA|template^application/vnd.oma.cab-pcc+xml
 person^Hao_Wang^OMA|template^application/vnd.oma.cab-subs-invite+xml

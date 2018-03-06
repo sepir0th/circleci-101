@@ -3,7 +3,6 @@ package com.example.lenovo.myapplication.Registration;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -15,7 +14,6 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -37,28 +35,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
+import com.example.excitemobilesdk.WebService.WebServiceRequest;
+import com.example.excitemobilesdk.WebService.WebServiceRequestListener;
+import com.example.excitemobilesdk.WebService.WebServiceSingleton;
 import com.example.lenovo.myapplication.Activities.MainActivity;
 import com.example.lenovo.myapplication.R;
 import com.example.lenovo.myapplication.Utils.AppConstants;
-import com.example.lenovo.myapplication.WebService.WebServiceSingleton;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.example.lenovo.myapplication.WelcomeSliders.PrefManager;
+import com.example.lenovo.myapplication.WelcomeSliders.WelcomeActivity;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, WebServiceRequestListener {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -72,16 +65,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private UserLoginTask mAuthTask = null;
 
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +92,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
             }
         });
+
+        // Checking for first time launch - before calling setContentView()
+        prefManager = new PrefManager(this);
+
+        if (prefManager.isLoginSession()) {
+            launchDashboardScreen();
+            finish();
+        }
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
@@ -165,9 +163,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
 
         // Reset errors.
         mEmailView.setError(null);
@@ -209,46 +204,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             //mAuthTask = new UserLoginTask(email, password);
             //mAuthTask.execute((Void) null);
 
-            // Tag used to cancel the request
+            // our section to call our webservice
             String tag_json_obj = "json_obj_req";
-            String url = AppConstants.WEB_SERVICE_DEV_URL;
+            WebServiceRequest jsonObjReq = new WebServiceRequest(Request.Method.POST,
+                    AppConstants.WEB_SERVICE_DEV_URL, this);
 
-            StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
-                    url,new Response.Listener<String>() {
-
-                @Override
-                public void onResponse(String response) {
-                    Log.i("response string",response.toString());
-
-                    showProgress(false);
-
-                    if (Boolean.valueOf(response)) {
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    } else {
-                        mPasswordView.setError(getString(R.string.error_incorrect_password));
-                        mPasswordView.requestFocus();
-                    }
-                }
-            }, new Response.ErrorListener() {
-
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    VolleyLog.d("error response","Error: " + error.getMessage());
-                    // hide the progress dialog
-                }
-            }){
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("username", "1");
-                    params.put("password", "123456");
-                    return params;
-                }
-            };
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("username", mEmailView.getText().toString());
+            params.put("password", mPasswordView.getText().toString());
+            jsonObjReq.setMapParams(params);
+            jsonObjReq.setCacheMode(false);
 
             // Adding request to request queue
             WebServiceSingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjReq, tag_json_obj);
         }
+    }
+
+    private void launchDashboardScreen() {
+        prefManager.setLoginSession(true);
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        finish();
     }
 
     private boolean isEmailValid(String email) {
@@ -340,6 +315,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView.setAdapter(adapter);
     }
 
+    @Override
+    public void onResponse(String response) {
+        Log.i("response string",response.toString());
+
+        showProgress(false);
+
+        if (Boolean.valueOf(response)) {
+            launchDashboardScreen();
+        } else {
+            mPasswordView.setError(getString(R.string.error_incorrect_password));
+            mPasswordView.requestFocus();
+        }
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
+    }
+
 
     private interface ProfileQuery {
         String[] PROJECTION = {
@@ -349,81 +343,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
-    }
-
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String mEmail;
-        private final String mPassword;
-        private Boolean authResult;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            // Tag used to cancel the request
-            String tag_json_obj = "json_obj_req";
-            String url = AppConstants.WEB_SERVICE_DEV_URL;
-            authResult = false;
-
-            StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
-                    url,new Response.Listener<String>() {
-
-                        @Override
-                        public void onResponse(String response) {
-                            Log.i("response string",response.toString());
-                            authResult = Boolean.valueOf(response);
-                        }
-                    }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        VolleyLog.d("error response","Error: " + error.getMessage());
-                        // hide the progress dialog
-                    }
-                }){
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("username", "1");
-                    params.put("password", "123456");
-                    return params;
-                }
-            };
-
-            // Adding request to request queue
-            WebServiceSingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjReq, tag_json_obj);
-
-            return authResult;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
     }
 }
 

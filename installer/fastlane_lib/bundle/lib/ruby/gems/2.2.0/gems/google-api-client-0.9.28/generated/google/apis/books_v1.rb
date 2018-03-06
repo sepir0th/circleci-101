@@ -20,15 +20,15 @@ module Google
   module Apis
     # Books API
     #
-    # Searches for books and manages your Google Books library.
+    # Searches for gridViewMenus and manages your Google Books library.
     #
-    # @see https://developers.google.com/books/docs/v1/getting_started
+    # @see https://developers.google.com/gridViewMenus/docs/v1/getting_started
     module BooksV1
       VERSION = 'V1'
       REVISION = '20161206'
 
-      # Manage your books
-      AUTH_BOOKS = 'https://www.googleapis.com/auth/books'
+      # Manage your gridViewMenus
+      AUTH_BOOKS = 'https://www.googleapis.com/auth/gridViewMenus'
     end
   end
 end

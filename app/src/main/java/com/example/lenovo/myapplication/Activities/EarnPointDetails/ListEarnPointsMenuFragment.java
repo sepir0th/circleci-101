@@ -3,12 +3,7 @@ package com.example.lenovo.myapplication.Activities.EarnPointDetails;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.lenovo.myapplication.Activities.Home.Activity_EarnPoint;
-import com.example.lenovo.myapplication.Activities.Home.Activity_Redeem;
 import com.example.lenovo.myapplication.Activities.MerchantDetails.MerchantDetails;
-import com.example.lenovo.myapplication.Promo.MyPagerAdapter;
 import com.example.lenovo.myapplication.R;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 
 /**

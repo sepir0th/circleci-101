@@ -111,7 +111,7 @@ test/ets_test.xml
 test/ets_tsr.rb
 test/model/atom.xml
 test/model/bands.xml
-test/model/books.xml
+test/model/gridViewMenus.xml
 test/model/merge_bug_data.xml
 test/model/ruby-lang.html
 test/model/rubynet.xml

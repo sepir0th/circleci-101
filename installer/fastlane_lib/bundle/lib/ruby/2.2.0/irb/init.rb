@@ -183,7 +183,7 @@ module IRB # :nodoc:
         @CONF[:PROMPT_MODE] = :NULL
       when "--inf-ruby-mode"
         @CONF[:PROMPT_MODE] = :INF_RUBY
-      when "--sample-book-mode", "--simple-prompt"
+      when "--sample-gridViewMenu-mode", "--simple-prompt"
         @CONF[:PROMPT_MODE] = :SIMPLE
       when "--tracer"
         @CONF[:USE_TRACER] = true

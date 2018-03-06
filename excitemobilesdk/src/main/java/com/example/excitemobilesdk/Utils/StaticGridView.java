@@ -1,4 +1,4 @@
-package com.example.lenovo.myapplication.Utils;
+package com.example.excitemobilesdk.Utils;
 
 import android.content.Context;
 import android.util.AttributeSet;

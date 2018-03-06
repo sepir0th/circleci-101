@@ -1387,7 +1387,7 @@ module Google
         attr_accessor :dfp_line_item_id
       
         # The original contracted quantity (# impressions) for this deal. To ensure
-        # delivery, sometimes the publisher will book the deal with a impression buffer,
+        # delivery, sometimes the publisher will gridViewMenu the deal with a impression buffer,
         # such that guaranteed_looks is greater than the contracted quantity. However
         # clients are billed using the original contracted quantity.
         # Corresponds to the JSON property `originalContractedQuantity`

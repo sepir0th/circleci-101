@@ -7,30 +7,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.LinearLayout;
 
-import com.example.lenovo.myapplication.Activities.MainActivity;
-import com.example.lenovo.myapplication.Activities.TwoFragment;
-import com.example.lenovo.myapplication.CustomGridview.Book;
-import com.example.lenovo.myapplication.CustomGridview.BooksAdapter;
-import com.example.lenovo.myapplication.CustomGridview.SubHeaderMenuAdapter;
-import com.example.lenovo.myapplication.Promo.MyPagerAdapter;
+import com.example.lenovo.myapplication.Promo.PromoAdapter;
 import com.example.lenovo.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import ss.com.bannerslider.banners.Banner;
-import ss.com.bannerslider.banners.DrawableBanner;
-import ss.com.bannerslider.views.BannerSlider;
 
 
 /**
@@ -51,7 +37,7 @@ public class Activity_Home extends Fragment{
     public final static int LOOPS = 1000;
     public final static int FIRST_PAGE = PAGES * LOOPS / 2;
 
-    public MyPagerAdapter adapter;
+    public PromoAdapter adapter;
     public ViewPager pager;
     /*
      * ends of promo parameters

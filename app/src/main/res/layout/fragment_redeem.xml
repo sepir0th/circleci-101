@@ -22,35 +22,18 @@
                 android:layout_height="wrap_content"
                 android:columnWidth="100dp"
                 android:numColumns="3"
-                android:paddingVertical="10dp"
-                android:verticalSpacing="10dp"
+                android:paddingVertical="0dp"
+                android:verticalSpacing="0dp"
                 android:horizontalSpacing="10dp"/>
 
-            <RelativeLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@color/windowBackground">
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tukar Point"
-                    android:layout_alignParentLeft="true"/>
-            </RelativeLayout>
-
-            <com.example.lenovo.myapplication.Utils.StaticGridView
-                android:id="@+id/gridview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnWidth="100dp"
-                android:numColumns="4"
-                android:paddingVertical="2dp"
-                android:verticalSpacing="2dp"
-                android:horizontalSpacing="2dp"/>
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"/>
 
             <android.support.v4.view.ViewPager
-                android:id="@+id/myviewpager"
+                android:id="@+id/ViewPagerPromo"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"/>
         </LinearLayout>

@@ -1,9 +1,12 @@
 package com.example.lenovo.myapplication.Activities.Home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,21 +15,28 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 
-import com.example.lenovo.myapplication.CustomGridview.Book;
-import com.example.lenovo.myapplication.CustomGridview.BooksAdapter;
-import com.example.lenovo.myapplication.CustomGridview.SubHeaderMenuAdapter;
-import com.example.lenovo.myapplication.Promo.MyPagerAdapter;
+import com.example.excitemobilesdk.CardViewMenu.CardViewMenu;
+import com.example.excitemobilesdk.CardViewMenu.CardViewMenuAdapter;
+import com.example.excitemobilesdk.CardViewMenu.CardViewMenuListener;
+import com.example.excitemobilesdk.CustomGridView.GridViewMenu;
+import com.example.excitemobilesdk.CustomGridView.GridViewMenuAdapter;
+import com.example.excitemobilesdk.CustomGridView.SubHeaderMenuAdapter;
+import com.example.lenovo.myapplication.Activities.RedeemPointsDetails.RedeemDetailsHome;
+import com.example.lenovo.myapplication.Promo.PromoAdapter;
 import com.example.lenovo.myapplication.R;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.example.excitemobilesdk.Utils.AppConstants.CARD_VIEW_STATIC_MODE;
 
 
 /**
  * Created by erwinlim on 12/02/18.
  */
 
-public class Activity_Redeem extends Fragment implements View.OnClickListener{
+public class Activity_Redeem extends Fragment implements View.OnClickListener, CardViewMenuListener {
 
     /*
      * our parameters to set Promo functions
@@ -37,7 +47,7 @@ public class Activity_Redeem extends Fragment implements View.OnClickListener{
     public final static int LOOPS = 1;
     public final static int FIRST_PAGE = PAGES * LOOPS / 2;
 
-    public MyPagerAdapter adapter;
+    public PromoAdapter adapter;
     public ViewPager pager;
 
     int currentPage = 0;
@@ -59,35 +69,14 @@ public class Activity_Redeem extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         LinearLayout mainLayout = (LinearLayout )inflater.inflate(R.layout.fragment_redeem, container, false);
-//
-        Book mainRedemptionPulsa = new Book("Pulsa",1,R.drawable.ic_054_smartphone_1,"0");
-        Book mainRedemptionPaketData = new Book("Paket Data",1,R.drawable.ic_012_browser_1,"0");
-        Book mainRedemptionPLN = new Book("PLN",1,R.drawable.ic_009_startup,"0");
-        Book mainRedemptionTelepon = new Book("Telepon",1,R.drawable.ic_002_credit_card_6,"0");
-        Book mainRedemptionBPJS = new Book("BPJS",1,R.drawable.ic_003_shopping_bag_2,"0");
-        Book mainRedemptionPDAM = new Book("PDAM",1,R.drawable.ic_006_coding,"0");
-        Book mainRedemptionVoucher = new Book("Voucher",1,R.drawable.ic_007_analytics_1,"0");
-        Book mainRedemptionEVoucher = new Book("e-Voucher",1,R.drawable.ic_013_purse,"0");
-        Book mainRedemptionKuliner = new Book("Kuliner",1,R.drawable.ic_015_gift_1,"0");
-        Book mainRedemptionElektronik = new Book("Elektronik",1,R.drawable.ic_014_buy_1,"0");
-        Book mainRedemptionGames = new Book("Games",1,R.drawable.ic_001_pin,"0");
-        Book mainRedemptionCicilan = new Book("Cicilan",1,R.drawable.ic_005_shirt,"0");
-
-        Book subHeaderGridMenuScanTrans = new Book("Scan Transaksi",1,R.drawable.ic_011_gift_2,"0");
-        Book subHeaderGridMenuStamp = new Book("Stamp Program",1,R.drawable.ic_012_browser_1,"0");
-        Book subHeaderGridMenuScanQR = new Book("Scan QR To Pay",1,R.drawable.ic_054_smartphone_1,"0");
-
+        setupMainMenu(mainLayout);
         setupPromo(mainLayout);
 
-        Book[] books = {mainRedemptionPulsa, mainRedemptionPaketData, mainRedemptionPLN, mainRedemptionTelepon,
-                mainRedemptionBPJS, mainRedemptionPDAM, mainRedemptionVoucher, mainRedemptionEVoucher, mainRedemptionKuliner,
-                mainRedemptionElektronik, mainRedemptionGames, mainRedemptionCicilan};
-        Book[] subHeaderGridMenuItems = {subHeaderGridMenuScanTrans, subHeaderGridMenuStamp, subHeaderGridMenuScanQR};
-
-        GridView gridView = mainLayout.findViewById(R.id.gridview);
-        BooksAdapter booksAdapter = new BooksAdapter(getContext(), books);
-        gridView.setAdapter(booksAdapter);
-
+        //setup sub header menu gridview
+        GridViewMenu subHeaderGridMenuScanTrans = new GridViewMenu("Scan Transaksi",1,R.drawable.ic_011_gift_2,"0");
+        GridViewMenu subHeaderGridMenuStamp = new GridViewMenu("Stamp Program",1,R.drawable.ic_012_browser_1,"0");
+        GridViewMenu subHeaderGridMenuScanQR = new GridViewMenu("Scan QR To Pay",1,R.drawable.ic_054_smartphone_1,"0");
+        GridViewMenu[] subHeaderGridMenuItems = {subHeaderGridMenuScanTrans, subHeaderGridMenuStamp, subHeaderGridMenuScanQR};
         GridView subHeaderGridMenu = mainLayout.findViewById(R.id.SubHeaderGridMenu);
         SubHeaderMenuAdapter subHeaderGridMenuAdapter = new SubHeaderMenuAdapter(getContext(), subHeaderGridMenuItems);
         subHeaderGridMenu.setAdapter(subHeaderGridMenuAdapter);
@@ -104,12 +93,46 @@ public class Activity_Redeem extends Fragment implements View.OnClickListener{
         return mainLayout;
     }
 
+    public GridViewMenuAdapter setupGridViewMainMenu(){
+        GridViewMenu mainRedemptionPulsa = new GridViewMenu("Pulsa",1,R.drawable.ic_054_smartphone_1,"0");
+        GridViewMenu mainRedemptionPaketData = new GridViewMenu("Paket Data",1,R.drawable.ic_012_browser_1,"0");
+        GridViewMenu mainRedemptionPLN = new GridViewMenu("PLN",1,R.drawable.ic_009_startup,"0");
+        GridViewMenu mainRedemptionTelepon = new GridViewMenu("Telepon",1,R.drawable.ic_002_credit_card_6,"0");
+        GridViewMenu mainRedemptionBPJS = new GridViewMenu("BPJS",1,R.drawable.ic_003_shopping_bag_2,"0");
+        GridViewMenu mainRedemptionPDAM = new GridViewMenu("PDAM",1,R.drawable.ic_006_coding,"0");
+        GridViewMenu mainRedemptionVoucher = new GridViewMenu("Voucher",1,R.drawable.ic_007_analytics_1,"0");
+        GridViewMenu mainRedemptionEVoucher = new GridViewMenu("e-Voucher",1,R.drawable.ic_013_purse,"0");
+        GridViewMenu mainRedemptionKuliner = new GridViewMenu("Kuliner",1,R.drawable.ic_015_gift_1,"0");
+        GridViewMenu mainRedemptionElektronik = new GridViewMenu("Elektronik",1,R.drawable.ic_014_buy_1,"0");
+        GridViewMenu mainRedemptionGames = new GridViewMenu("Games",1,R.drawable.ic_001_pin,"0");
+        GridViewMenu mainRedemptionCicilan = new GridViewMenu("Cicilan",1,R.drawable.ic_005_shirt,"0");
+
+        GridViewMenu[] gridViewMenus = {mainRedemptionPulsa, mainRedemptionPaketData, mainRedemptionPLN, mainRedemptionTelepon,
+                mainRedemptionBPJS, mainRedemptionPDAM, mainRedemptionVoucher, mainRedemptionEVoucher, mainRedemptionKuliner,
+                mainRedemptionElektronik, mainRedemptionGames, mainRedemptionCicilan};
+        return new GridViewMenuAdapter(getContext(), gridViewMenus);
+    }
+
+    public void setupMainMenu(LinearLayout mainLayout){
+        ArrayList<CardViewMenu> cardViewMenuArrayList = new ArrayList<>();
+        cardViewMenuArrayList.add(new CardViewMenu("Tukar Point", "", this.setupGridViewMainMenu()));
+
+        CardViewMenuAdapter adapter = new CardViewMenuAdapter(cardViewMenuArrayList, getActivity(), CARD_VIEW_STATIC_MODE,
+                this);
+        adapter.setColumnNum(4);
+
+        RecyclerView recyclerView = mainLayout.findViewById(R.id.recycler_view);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+    }
+
     public void setupPromo(LinearLayout RedeemLayout){
-        pager = RedeemLayout.findViewById(R.id.myviewpager);
+        pager = RedeemLayout.findViewById(R.id.ViewPagerPromo);
 
         int[] imagesArray = {R.drawable.banner_creative_kids,R.drawable.banner_instant,R.drawable.banner_material_android_hive,R.drawable.download_app,R.drawable.photo_promo};
 
-        adapter = new MyPagerAdapter(getActivity(), getChildFragmentManager(), imagesArray);
+        adapter = new PromoAdapter(getActivity(), getChildFragmentManager(), imagesArray);
         pager.setAdapter(adapter);
         pager.setPageTransformer(false, adapter);
 
@@ -159,6 +182,18 @@ public class Activity_Redeem extends Fragment implements View.OnClickListener{
 //                startActivity(intent);
 //                break;
 //        }
+
+    }
+
+    @Override
+    public void cardViewOnClick(AdapterView<?> adapterView, View view, int position, long l) {
+            Log.i("Menu clicked : ", String.valueOf(position));
+            Intent intent = new Intent(getActivity(), RedeemDetailsHome.class);
+            startActivity(intent);
+    }
+
+    @Override
+    public void cardViewShowAllOnClick(CardViewMenuAdapter.MenuViewHolder holder, int position, View view) {
 
     }
 }

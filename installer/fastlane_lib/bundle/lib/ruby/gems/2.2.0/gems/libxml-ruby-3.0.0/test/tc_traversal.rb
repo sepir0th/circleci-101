@@ -7,7 +7,7 @@ class TestTranversal < Minitest::Test
   ROOT_ELEMENTS_LENGTH = 13
   
   def setup
-    filename = File.join(File.dirname(__FILE__), 'model/books.xml')
+    filename = File.join(File.dirname(__FILE__), 'model/gridViewMenus.xml')
     @doc = XML::Document.file(filename)
   end
   
@@ -32,13 +32,13 @@ class TestTranversal < Minitest::Test
 
   def test_no_children
     # Get a node with no children
-    node = @doc.find_first('/catalog/book[@id="bk113"]/price')
+    node = @doc.find_first('/catalog/gridViewMenu[@id="bk113"]/price')
     assert_equal(0, node.children.length)
   end
 
   def test_no_children_inner_xml
     # Get a node with no children
-    node = @doc.find_first('/catalog/book[@id="bk113"]/price')
+    node = @doc.find_first('/catalog/gridViewMenu[@id="bk113"]/price')
     assert_nil(node.inner_xml)
   end
   def test_each

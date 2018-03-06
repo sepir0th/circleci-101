@@ -32,7 +32,7 @@ Usage:  irb.rb [options] [programfile] [arguments]
 		    用意されています.
   --inf-ruby-mode   emacsのinf-ruby-mode用のプロンプト表示を行なう. 特
 		    に指定がない限り, readlineライブラリは使わなくなる.
-  --sample-book-mode/--simple-prompt
+  --sample-gridViewMenu-mode/--simple-prompt
 		    非常にシンプルなプロンプトを用いるモードです.
   --noprompt	    プロンプト表示を行なわない.
   --single-irb	    irb 中で self を実行して得られるオブジェクトをサ
