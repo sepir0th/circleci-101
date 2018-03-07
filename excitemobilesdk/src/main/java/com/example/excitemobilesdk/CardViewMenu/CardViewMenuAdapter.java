@@ -14,9 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.excitemobilesdk.R;
-import com.example.excitemobilesdk.Utils.AppConstants;
 
 import java.util.ArrayList;
+
+import static com.example.excitemobilesdk.Utils.AppConstants.CARD_VIEW_STATIC_MODE;
+import static com.example.excitemobilesdk.Utils.AppConstants.GRID_MODE_CARD;
 
 /**
  * Created by erwinlim on 23/02/18.
@@ -45,7 +47,7 @@ public class CardViewMenuAdapter extends RecyclerView.Adapter<CardViewMenuAdapte
     @Override
     public MenuViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.row_employee, parent, false);
+        View view = layoutInflater.inflate(R.layout.row_cardviewmenu, parent, false);
         return new MenuViewHolder(view);
     }
 
@@ -54,12 +56,29 @@ public class CardViewMenuAdapter extends RecyclerView.Adapter<CardViewMenuAdapte
         holder.txtEmpName.setText(dataList.get(position).getEmployeeName());
         holder.txtEmpEmail.setText(dataList.get(position).getEmployeeEmail());
         holder.gridViewMenu.setAdapter(dataList.get(position).getGridViewMenu());
+        holder.intCardIndex = position;
 
+        int size = columnNum;
         if(dataList.get(position).getColumnNum() != 0){
             holder.gridViewMenu.setNumColumns(dataList.get(position).getColumnNum());
+            size = dataList.get(position).getColumnNum();
         }else{
             holder.gridViewMenu.setNumColumns(columnNum);
         }
+
+        // Calculated single Item Layout Width for each grid element ....
+        DisplayMetrics dm = new DisplayMetrics();
+        ((Activity)mContext).getWindowManager().getDefaultDisplay().getMetrics(dm);
+        float density = dm.density;
+        float width = 95;
+        int totalWidth = (int) (width * size * density);
+        if(cardMode == GRID_MODE_CARD){
+            width = dm.widthPixels / columnNum;
+            totalWidth = (int) (width * size - 100);
+        }
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(totalWidth, LinearLayout.LayoutParams.MATCH_PARENT);
+        holder.gridViewMenu.setLayoutParams(params);
 
         holder.btnListAllMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,22 +105,10 @@ public class CardViewMenuAdapter extends RecyclerView.Adapter<CardViewMenuAdapte
         TextView txtEmpName, txtEmpEmail;
         GridView gridViewMenu;
         Button btnListAllMenu;
-        int size = 0;
+        int intCardIndex = 0;
 
         MenuViewHolder(View itemView) {
             super(itemView);
-
-            int size = columnNum;
-            // Calculated single Item Layout Width for each grid element ....
-            int width = 95;
-
-            DisplayMetrics dm = new DisplayMetrics();
-            ((Activity)mContext).getWindowManager().getDefaultDisplay().getMetrics(dm);
-            float density = dm.density;
-
-            int totalWidth = (int) (width * size * density);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(totalWidth, LinearLayout.LayoutParams.MATCH_PARENT);
-            gridViewMenu.setLayoutParams(params);
 
             txtEmpName = itemView.findViewById(R.id.txt_employee_name);
             txtEmpEmail = itemView.findViewById(R.id.txt_employee_email);
@@ -109,12 +116,12 @@ public class CardViewMenuAdapter extends RecyclerView.Adapter<CardViewMenuAdapte
             gridViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    cardViewMenuListener.cardViewOnClick(adapterView, view, position, l);
+                    cardViewMenuListener.cardViewOnClick(adapterView, view, position, l, intCardIndex);
 
                 }
             });
             btnListAllMenu = itemView.findViewById(R.id.btn_listAllMenu);
-            if(cardMode == AppConstants.CARD_VIEW_STATIC_MODE){
+            if(cardMode == CARD_VIEW_STATIC_MODE || cardMode == GRID_MODE_CARD){
                 btnListAllMenu.setVisibility(View.GONE);
             }
         }

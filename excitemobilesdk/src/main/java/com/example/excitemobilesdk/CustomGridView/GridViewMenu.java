@@ -22,44 +22,58 @@
 
 package com.example.excitemobilesdk.CustomGridView;
 
-public class GridViewMenu {
-  private final String name;
-  private final int author;
-  private final int imageResource;
-  private boolean isFavorite = false;
-  private final String imageUrl;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-  public GridViewMenu(String name, int author, int imageResource, String imageUrl) {
-    this.name = name;
-    this.author = author;
+public class GridViewMenu implements Parcelable {
+  private String menuTitle;
+  private String menuSubtitle;
+  private int imageResource;
+
+  public GridViewMenu(String menuTitle, int imageResource) {
+    this.menuTitle = menuTitle;
     this.imageResource = imageResource;
-    this.imageUrl = imageUrl;
   }
 
-  public String getName() {
-    return name;
+
+  public String getMenuTitle() {
+    return menuTitle;
   }
 
-  public int getAuthor() {
-    return author;
+  public String getMenuSubitle() {
+    return menuSubtitle;
   }
 
   public int getImageResource() {
     return imageResource;
   }
 
-  public boolean getIsFavorite() {
-    return isFavorite;
-  }
-  public void setIsFavorite(boolean isFavorite) {
-    this.isFavorite = isFavorite;
+  public void setMenuSubitle(String menuSubtitle) {
+    this.menuSubtitle = menuSubtitle;
   }
 
-  public void toggleFavorite() {
-    isFavorite = !isFavorite;
+  @Override
+  public int describeContents() {
+    return 0;
   }
 
-  public String getImageUrl() {
-    return imageUrl;
+  @Override
+  public void writeToParcel(Parcel parcel, int i) {
+    parcel.writeString(getMenuTitle());
+  }
+
+  public static final Parcelable.Creator<GridViewMenu> CREATOR
+          = new Parcelable.Creator<GridViewMenu>() {
+    public GridViewMenu createFromParcel(Parcel in) {
+      return new GridViewMenu(in);
+    }
+
+    public GridViewMenu[] newArray(int size) {
+      return new GridViewMenu[size];
+    }
+  };
+
+  private GridViewMenu(Parcel in) {
+    menuTitle = in.readString();
   }
 }

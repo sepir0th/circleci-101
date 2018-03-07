@@ -23,6 +23,8 @@ import com.example.lenovo.myapplication.Activities.EarnPointDetails.ListEarnPoin
 import com.example.lenovo.myapplication.Activities.EarnPointDetails.ListEarnPointsMenuFragment;
 import com.example.lenovo.myapplication.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +41,9 @@ public class RedeemDetailsHome extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        TextView toolbarTitle = findViewById(R.id.toolbar_title);
+        toolbarTitle.setText("Redeem Point");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

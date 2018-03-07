@@ -8,6 +8,6 @@ import android.widget.AdapterView;
  */
 
 public interface CardViewMenuListener {
-    public void cardViewOnClick(AdapterView<?> adapterView, View view, int position, long l);
+    public void cardViewOnClick(AdapterView<?> adapterView, View view, int gridItemPosition, long l, int cardIndex);
     public void cardViewShowAllOnClick(CardViewMenuAdapter.MenuViewHolder holder, final int position, View view);
 }

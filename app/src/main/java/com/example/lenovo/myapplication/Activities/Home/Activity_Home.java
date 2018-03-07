@@ -70,8 +70,8 @@ public class Activity_Home extends Fragment{
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new Activity_Redeem(), "Redeem Point");
-        adapter.addFragment(new Activity_EarnPoint(), "Dapatkan Point");
+        adapter.addFragment(new Activity_Redeem(), getResources().getString(R.string.dashboard_redeem_tab_title));
+        adapter.addFragment(new Activity_EarnPoint(), getResources().getString(R.string.dashboard_earn_tab_title));
         viewPager.setAdapter(adapter);
     }
 

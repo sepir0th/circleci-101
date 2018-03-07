@@ -54,7 +54,7 @@ public class SubHeaderMenuAdapter extends BaseAdapter {
         final TextView productName = convertView.findViewById(R.id.textview_book_name);
         final ImageView productImg = convertView.findViewById(R.id.imageview_cover_art);
 
-        productName.setText(gridViewMenu.getName());
+        productName.setText(gridViewMenu.getMenuTitle());
         productImg.setImageResource(gridViewMenu.getImageResource());
 
         return convertView;

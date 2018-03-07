@@ -50,7 +50,6 @@
             android:id="@+id/txt_merchantName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/image_pin"
             android:layout_alignParentLeft="true"
             android:text="Open App"
             android:layout_alignParentTop="true"/>
@@ -59,7 +58,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_toRightOf="@+id/image_pin"
             android:text="App Name" />
     </RelativeLayout>
 

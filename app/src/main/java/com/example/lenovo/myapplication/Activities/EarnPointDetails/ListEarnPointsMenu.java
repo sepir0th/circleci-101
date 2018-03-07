@@ -13,10 +13,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.excitemobilesdk.CustomGridView.GridViewMenu;
 import com.example.lenovo.myapplication.Activities.Home.Activity_Home;
 import com.example.lenovo.myapplication.Activities.MainActivity;
 import com.example.lenovo.myapplication.Activities.TwoFragment;
 import com.example.lenovo.myapplication.R;
+import com.example.lenovo.myapplication.Utils.AppConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +28,15 @@ public class ListEarnPointsMenu extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private ArrayList<GridViewMenu> gridViewMenus_onlineShop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_earn_points_menu);
+
+        int TabCurrentIndex = getIntent().getIntExtra(AppConstants.TAB_CURRENT_INDEX, 0);
+        gridViewMenus_onlineShop = getIntent().getParcelableArrayListExtra(AppConstants.TAB_TITLE);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,16 +47,24 @@ public class ListEarnPointsMenu extends AppCompatActivity {
         viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
+        //here we are auto select the tab based on previous selection item
         tabLayout =  findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.getTabAt(TabCurrentIndex).select();
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ListEarnPointsMenuFragment(), "Food & Beverage");
-        adapter.addFragment(new ListEarnPointsMenuFragment(), "Luxury Dining");
-        adapter.addFragment(new ListEarnPointsMenuFragment(), "Health & Beauty");
-        adapter.addFragment(new ListEarnPointsMenuFragment(), "Stationary");
+        if(gridViewMenus_onlineShop != null) {
+            for (GridViewMenu gridMenu : gridViewMenus_onlineShop) {
+                adapter.addFragment(new ListEarnPointsMenuFragment(), gridMenu.getMenuTitle());
+            }
+        }else{
+            adapter.addFragment(new ListEarnPointsMenuFragment(), "Food & Beverage");
+            adapter.addFragment(new ListEarnPointsMenuFragment(), "Luxury Dining");
+            adapter.addFragment(new ListEarnPointsMenuFragment(), "Health & Beauty");
+            adapter.addFragment(new ListEarnPointsMenuFragment(), "Stationary");
+        }
         viewPager.setAdapter(adapter);
     }
 

@@ -49,6 +49,10 @@
         <activity
             android:name=".Activities.RedeemPointsDetails.RedeemDetailsHome"
             android:label="@string/title_activity_redeem_details_home"
+            android:theme="@style/MyMaterialTheme" />
+        <activity
+            android:name=".Activities.ExcitePartner.ExcitePartnerList"
+            android:label="@string/title_activity_excite_partner_list"
             android:theme="@style/MyMaterialTheme"></activity>
     </application>
 

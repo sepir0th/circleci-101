@@ -18,11 +18,20 @@ public class GridViewMenuAdapter extends BaseAdapter {
 
     private final Context mContext;
     private final GridViewMenu[] gridViewMenus;
+    private int imageHeight = 0;
+    private int imageWidth = 0;
 
     // 1
     public GridViewMenuAdapter(Context context, GridViewMenu[] gridViewMenus) {
         this.mContext = context;
         this.gridViewMenus = gridViewMenus;
+    }
+
+    public GridViewMenuAdapter(Context context, GridViewMenu[] gridViewMenus, int imageHeight, int imageWidth) {
+        this.mContext = context;
+        this.gridViewMenus = gridViewMenus;
+        this.imageHeight = imageHeight;
+        this.imageWidth = imageWidth;
     }
 
     @Override
@@ -48,14 +57,21 @@ public class GridViewMenuAdapter extends BaseAdapter {
         // 2
         if (convertView == null) {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-            convertView = layoutInflater.inflate(R.layout.linearlayout_book, null);
+            convertView = layoutInflater.inflate(R.layout.linearlayout_gridviewmenu, null);
         }
 
-        final TextView productName = convertView.findViewById(R.id.textview_book_name);
-        final ImageView productImg = convertView.findViewById(R.id.imageview_cover_art);
+        final TextView menuTitle = convertView.findViewById(R.id.txt_gridviewmenu_title);
+        final TextView menuSubTitle = convertView.findViewById(R.id.txt_gridviewmenu_subtitle);
+        final ImageView menuImg = convertView.findViewById(R.id.imageview_cover_art);
 
-        productName.setText(gridViewMenu.getName());
-        productImg.setImageResource(gridViewMenu.getImageResource());
+        menuTitle.setText(gridViewMenu.getMenuTitle());
+        menuSubTitle.setText(gridViewMenu.getMenuSubitle());
+        menuImg.setImageResource(gridViewMenu.getImageResource());
+        if(imageHeight != 0 && imageWidth != 0) {
+            menuImg.getLayoutParams().width = imageWidth;
+            menuImg.getLayoutParams().height = imageHeight;
+        }
+        menuImg.requestLayout();
 
         return convertView;
     }

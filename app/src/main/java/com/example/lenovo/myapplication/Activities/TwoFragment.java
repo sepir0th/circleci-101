@@ -59,18 +59,18 @@ public class TwoFragment extends Fragment implements View.OnClickListener, CardV
         switchButton = mainLayout.findViewById(R.id.switchActivityTwo);
         switchButton.setOnClickListener(this);
 
-        GridViewMenu mainRedemptionPulsa = new GridViewMenu("Pulsa",1,R.drawable.ic_054_smartphone_1,"0");
-        GridViewMenu mainRedemptionPaketData = new GridViewMenu("Paket Data",1,R.drawable.ic_012_browser_1,"0");
-        GridViewMenu mainRedemptionPLN = new GridViewMenu("PLN",1,R.drawable.ic_009_startup,"0");
-        GridViewMenu mainRedemptionTelepon = new GridViewMenu("Telepon",1,R.drawable.ic_002_credit_card_6,"0");
-        GridViewMenu mainRedemptionBPJS = new GridViewMenu("BPJS",1,R.drawable.ic_003_shopping_bag_2,"0");
-        GridViewMenu mainRedemptionPDAM = new GridViewMenu("PDAM",1,R.drawable.ic_006_coding,"0");
-        GridViewMenu mainRedemptionVoucher = new GridViewMenu("Voucher",1,R.drawable.ic_007_analytics_1,"0");
-        GridViewMenu mainRedemptionEVoucher = new GridViewMenu("e-Voucher",1,R.drawable.ic_013_purse,"0");
-        GridViewMenu mainRedemptionKuliner = new GridViewMenu("Kuliner",1,R.drawable.ic_015_gift_1,"0");
-        GridViewMenu mainRedemptionElektronik = new GridViewMenu("Elektronik",1,R.drawable.ic_014_buy_1,"0");
-        GridViewMenu mainRedemptionGames = new GridViewMenu("Games",1,R.drawable.ic_001_pin,"0");
-        GridViewMenu mainRedemptionCicilan = new GridViewMenu("Cicilan",1,R.drawable.ic_005_shirt,"0");
+        GridViewMenu mainRedemptionPulsa = new GridViewMenu("Pulsa", R.drawable.ic_054_smartphone_1);
+        GridViewMenu mainRedemptionPaketData = new GridViewMenu("Paket Data", R.drawable.ic_012_browser_1);
+        GridViewMenu mainRedemptionPLN = new GridViewMenu("PLN", R.drawable.ic_009_startup);
+        GridViewMenu mainRedemptionTelepon = new GridViewMenu("Telepon", R.drawable.ic_002_credit_card_6);
+        GridViewMenu mainRedemptionBPJS = new GridViewMenu("BPJS", R.drawable.ic_003_shopping_bag_2);
+        GridViewMenu mainRedemptionPDAM = new GridViewMenu("PDAM" , R.drawable.ic_006_coding);
+        GridViewMenu mainRedemptionVoucher = new GridViewMenu("Voucher", R.drawable.ic_007_analytics_1);
+        GridViewMenu mainRedemptionEVoucher = new GridViewMenu("e-Voucher", R.drawable.ic_013_purse);
+        GridViewMenu mainRedemptionKuliner = new GridViewMenu("Kuliner", R.drawable.ic_015_gift_1);
+        GridViewMenu mainRedemptionElektronik = new GridViewMenu("Elektronik", R.drawable.ic_014_buy_1);
+        GridViewMenu mainRedemptionGames = new GridViewMenu("Games", R.drawable.ic_001_pin);
+        GridViewMenu mainRedemptionCicilan = new GridViewMenu("Cicilan", R.drawable.ic_005_shirt);
 
         GridViewMenu[] gridViewMenus = {mainRedemptionPulsa, mainRedemptionPaketData, mainRedemptionPLN, mainRedemptionTelepon,
                 mainRedemptionBPJS, mainRedemptionPDAM, mainRedemptionVoucher, mainRedemptionEVoucher, mainRedemptionKuliner,
@@ -111,7 +111,7 @@ public class TwoFragment extends Fragment implements View.OnClickListener, CardV
     }
 
     @Override
-    public void cardViewOnClick(AdapterView<?> adapterView, View view, int position, long l) {
+    public void cardViewOnClick(AdapterView<?> adapterView, View view, int position, long l, int cardIndex) {
 
     }
 
