@@ -43,15 +43,24 @@ import com.example.excitemobilesdk.WebService.WebServiceSingleton;
 import com.example.lenovo.myapplication.Activities.MainActivity;
 import com.example.lenovo.myapplication.R;
 import com.example.lenovo.myapplication.Utils.AppConstants;
+import com.example.lenovo.myapplication.Utils.NetworkingButton;
 import com.example.lenovo.myapplication.WelcomeSliders.PrefManager;
 import com.example.lenovo.myapplication.WelcomeSliders.WelcomeActivity;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Scope;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, WebServiceRequestListener {
+public class LoginActivity extends BaseLoginActivity implements LoaderCallbacks<Cursor>, WebServiceRequestListener{
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -74,14 +83,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private PrefManager prefManager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_login);
+        super.onCreate(savedInstanceState);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = findViewById(R.id.email);
         populateAutoComplete();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -101,8 +110,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             finish();
         }
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        NetworkingButton mEmailSignInButton = findViewById(R.id.email_sign_in_button);
+        mEmailSignInButton.setOnNetworkClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
@@ -220,11 +229,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-    private void launchDashboardScreen() {
+    @Override
+    public void launchDashboardScreen() {
         prefManager.setLoginSession(true);
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
         finish();
     }
+
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic

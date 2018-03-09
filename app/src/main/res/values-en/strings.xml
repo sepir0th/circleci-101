@@ -45,6 +45,13 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
+    <!-- facebook -->
+    <string name="facebook_app_id">769965363127877</string>
+    <string name="fb_login_protocol_scheme">fb769965363127877</string>
+
+    <!-- button login title -->
+    <string name="facebook_button_title">Continue with Facebook</string>
+    <string name="google_button_title">Continue with Google</string>
 
     <!-- Strings related to dashboard -->
     <string name="dashboard_redeem_tab_title">REDEEM POINT</string>
