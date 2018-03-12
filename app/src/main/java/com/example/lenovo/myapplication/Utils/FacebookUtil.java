@@ -14,6 +14,9 @@ import java.net.URL;
 
 /**
  * Created by erwinlim on 09/03/18.
+ *
+ * <p>This class is deprecated as we're using Firebase for easier token management</p>
+ *
  */
 
 public class FacebookUtil {

@@ -3,6 +3,9 @@ package com.example.lenovo.myapplication.Registration;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -44,8 +47,10 @@ import com.example.lenovo.myapplication.Activities.MainActivity;
 import com.example.lenovo.myapplication.R;
 import com.example.lenovo.myapplication.Utils.AppConstants;
 import com.example.lenovo.myapplication.Utils.NetworkingButton;
+import com.example.lenovo.myapplication.Utils.NetworkingButtonListener;
 import com.example.lenovo.myapplication.WelcomeSliders.PrefManager;
 import com.example.lenovo.myapplication.WelcomeSliders.WelcomeActivity;
+import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -54,11 +59,16 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
+import com.google.firebase.auth.FirebaseAuth;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login via: </br>
+ * - email/password.</br>
+ * - Google Email Sign in</br>
+ * - Facebook Sign in</br>
+ *
  */
 public class LoginActivity extends BaseLoginActivity implements LoaderCallbacks<Cursor>, WebServiceRequestListener{
 
@@ -67,28 +77,27 @@ public class LoginActivity extends BaseLoginActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private PrefManager prefManager;
+    private Context mContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_login);
+
+        mAuth = FirebaseAuth.getInstance();
+        Log.e("Auth Parse", "Name: " + mAuth.getCurrentUser().getDisplayName()
+                + ", email: " + mAuth.getCurrentUser().getEmail()
+                + ", Image: " + mAuth.getCurrentUser().getPhotoUrl());
+
         super.onCreate(savedInstanceState);
         // Set up the login form.
         mEmailView = findViewById(R.id.email);
         populateAutoComplete();
+        mContext = this;
 
         mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -102,19 +111,26 @@ public class LoginActivity extends BaseLoginActivity implements LoaderCallbacks<
             }
         });
 
-        // Checking for first time launch - before calling setContentView()
-        prefManager = new PrefManager(this);
-
-        if (prefManager.isLoginSession()) {
-            launchDashboardScreen();
-            finish();
-        }
-
         NetworkingButton mEmailSignInButton = findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnNetworkClickListener(new OnClickListener() {
+        mEmailSignInButton.setDefaultNetworkError(false);
+        mEmailSignInButton.setOnNetworkClickListener(new NetworkingButtonListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+            }
+
+            @Override
+            public void onErrorResponse() {
+                AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
+                alertDialog.setTitle("Alert");
+                alertDialog.setMessage("Alert message to be shown");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
             }
         });
 
@@ -229,13 +245,6 @@ public class LoginActivity extends BaseLoginActivity implements LoaderCallbacks<
         }
     }
 
-    @Override
-    public void launchDashboardScreen() {
-        prefManager.setLoginSession(true);
-        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-        finish();
-    }
-
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
@@ -345,6 +354,15 @@ public class LoginActivity extends BaseLoginActivity implements LoaderCallbacks<
 
     }
 
+    /**
+     * this function override onSuccess function from {@link BaseLoginActivity#onSuccess(LoginResult)}
+     * we could add some process here such as flaging or other process
+     * @param loginResult Result from the dialog
+     */
+    @Override
+    public void onSuccess(LoginResult loginResult) {
+        super.onSuccess(loginResult);
+    }
 
     private interface ProfileQuery {
         String[] PROJECTION = {

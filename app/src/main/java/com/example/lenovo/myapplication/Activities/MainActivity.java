@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.lenovo.myapplication.Activities.Home.Activity_Home;
 import com.example.lenovo.myapplication.Activities.Search.SearchActivity;
 import com.example.lenovo.myapplication.R;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private Button btn_search;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "dashboard");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "dashboard");
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "screen");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+        mFirebaseAnalytics.setCurrentScreen(this, "Dashboard", null /* class override */);
     }
 
     private void setupViewPager(ViewPager viewPager) {

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "454008602982",
+    "firebase_url": "https://excite-mobile-dev.firebaseio.com",
+    "project_id": "excite-mobile-dev",
+    "storage_bucket": "excite-mobile-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454008602982:android:56b8209dd6aa0e1d",
+        "android_client_info": {
+          "package_name": "com.example.lenovo.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454008602982-ts7t5ngc0c4g6al0idgpk2touu62o083.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMemNWPJ21YPhFAkynERMnir4aRu36hVg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454008602982-ts7t5ngc0c4g6al0idgpk2touu62o083.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
