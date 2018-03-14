@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.lenovo.myapplication.Activities.NoNetwork.NonetworkActivity"
+    tools:context="com.example.lenovo.myapplication.com.example.lenovo.shop.Activities.NoNetwork.NonetworkActivity"
     tools:showIn="@layout/activity_nonetwork">
 
 </android.support.constraint.ConstraintLayout>

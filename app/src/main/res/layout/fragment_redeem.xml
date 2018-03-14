@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/windowBackground"
-    tools:context=".Activities.Home.Activity_Redeem">
+    tools:context="com.example.lenovo.shop.Activities.Home.Activity_Redeem">
 
     <!-- Scrollable Item below header and above footer -->
     <ScrollView

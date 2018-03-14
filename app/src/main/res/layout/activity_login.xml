@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.lenovo.myapplication.Registration.LoginActivity">
+    tools:context="com.example.lenovo.myapplication.com.example.lenovo.shop.Registration.LoginActivity">
 
     <!-- Login progress -->
     <ProgressBar
@@ -64,7 +64,7 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <com.example.lenovo.myapplication.Utils.NetworkingButton
+            <com.excite.mobile.shop.Utils.NetworkingButton
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"

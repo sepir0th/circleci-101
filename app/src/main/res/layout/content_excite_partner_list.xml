@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.lenovo.myapplication.Activities.ExcitePartner.ExcitePartnerList"
+    tools:context="com.example.lenovo.myapplication.com.example.lenovo.shop.Activities.ExcitePartner.ExcitePartnerList"
     tools:showIn="@layout/activity_excite_partner_list">
 
 </android.support.constraint.ConstraintLayout>

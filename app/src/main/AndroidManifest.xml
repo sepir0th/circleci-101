@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lenovo.myapplication">
+    package="com.excite.mobile.shop">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
         <activity
-            android:name=".WelcomeSliders.WelcomeActivity"
+            android:name="com.excite.mobile.shop.WelcomeSliders.WelcomeActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,12 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name="com.excite.mobile.shop.Activities.MainActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Registration.LoginActivity">
+        <activity android:name="com.excite.mobile.shop.Registration.LoginActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -42,17 +42,17 @@
             android:value="6c7ff41da047fa088f9c7de0bc9d2c4ff3b796ea" />
 
         <activity
-            android:name=".Activities.EarnPointDetails.ListEarnPointsMenu"
+            android:name="com.excite.mobile.shop.Activities.EarnPointDetails.ListEarnPointsMenu"
             android:label="@string/title_activity_list_earn_points_menu" />
-        <activity android:name=".Activities.MerchantDetails.MerchantDetails" />
-        <activity android:name=".Activities.ExcitePartner.ExcitePartnerMaster" />
-        <activity android:name=".Activities.Search.SearchActivity" />
+        <activity android:name="com.excite.mobile.shop.Activities.MerchantDetails.MerchantDetails" />
+        <activity android:name="com.excite.mobile.shop.Activities.ExcitePartner.ExcitePartnerMaster" />
+        <activity android:name="com.excite.mobile.shop.Activities.Search.SearchActivity" />
         <activity
-            android:name=".Activities.RedeemPointsDetails.RedeemDetailsHome"
+            android:name="com.excite.mobile.shop.Activities.RedeemPointsDetails.RedeemDetailsHome"
             android:label="@string/title_activity_redeem_details_home"
             android:theme="@style/MyMaterialTheme" />
         <activity
-            android:name=".Activities.ExcitePartner.ExcitePartnerList"
+            android:name="com.excite.mobile.shop.Activities.ExcitePartner.ExcitePartnerList"
             android:label="@string/title_activity_excite_partner_list"
             android:theme="@style/MyMaterialTheme" />
 
@@ -77,11 +77,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.NoNetwork.NonetworkActivity"
+            android:name="com.excite.mobile.shop.Activities.NoNetwork.NonetworkActivity"
             android:label="@string/title_activity_nonetwork"
             android:theme="@style/MyMaterialTheme" />
         <activity
-            android:name=".Activities.Profile.ProfileActivity"
+            android:name="com.excite.mobile.shop.Activities.Profile.ProfileActivity"
             android:label="@string/title_activity_profile"
             android:theme="@style/MyMaterialTheme"></activity>
     </application>
