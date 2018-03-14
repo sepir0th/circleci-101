@@ -85,7 +85,7 @@ public class BaseLoginActivity extends AppCompatActivity implements GoogleApiCli
         // Checking for first time launch - before calling setContentView()
         prefManager = new PrefManager(this);
 
-        if (prefManager.isLoginSession() && this.mAuth!= null) {
+        if (prefManager.isLoginSession() && this.mAuth.getCurrentUser()!= null) {
             launchDashboardScreen();
             finish();
         }

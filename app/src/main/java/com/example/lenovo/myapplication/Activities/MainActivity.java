@@ -5,9 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.lenovo.myapplication.Activities.Home.Activity_Home;
+import com.example.lenovo.myapplication.Activities.Profile.ProfileActivity;
 import com.example.lenovo.myapplication.Activities.Search.SearchActivity;
 import com.example.lenovo.myapplication.R;
+import com.example.lenovo.myapplication.Registration.BaseLoginActivity;
+import com.example.lenovo.myapplication.WelcomeSliders.PrefManager;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -31,12 +35,23 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private Button btn_search;
+    private Button btn_profile;
     private FirebaseAnalytics mFirebaseAnalytics;
+    public PrefManager prefManager;
+    public FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mAuth = FirebaseAuth.getInstance();
+        // Checking for first time launch - before calling setContentView()
+        prefManager = new PrefManager(this);
+
+        if (!prefManager.isLoginSession() && this.mAuth.getCurrentUser()== null) {
+            finish();
+        }
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -58,14 +73,33 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btn_profile = findViewById(R.id.btn_profile);
+        btn_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Bundle bundle = new Bundle();
         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "dashboard");
         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "dashboard");
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "screen");
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+        mFirebaseAnalytics.logEvent("Click_promo_banner", bundle);
         mFirebaseAnalytics.setCurrentScreen(this, "Dashboard", null /* class override */);
+        mFirebaseAnalytics.setUserProperty("favorite_item", "lazada");
+    }
+
+    /**
+     * our function to move the activity into the dashboard.
+     */
+    public void launchDashboardScreen() {
+        prefManager.setLoginSession(true);
+        startActivity(new Intent(MainActivity.this, MainActivity.class));
+        finish();
     }
 
     private void setupViewPager(ViewPager viewPager) {

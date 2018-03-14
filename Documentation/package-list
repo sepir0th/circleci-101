@@ -10,6 +10,7 @@ com.example.lenovo.myapplication.Activities.ExcitePartner
 com.example.lenovo.myapplication.Activities.Home
 com.example.lenovo.myapplication.Activities.MerchantDetails
 com.example.lenovo.myapplication.Activities.NoNetwork
+com.example.lenovo.myapplication.Activities.Profile
 com.example.lenovo.myapplication.Activities.RedeemPointsDetails
 com.example.lenovo.myapplication.Activities.Search
 com.example.lenovo.myapplication.Promo

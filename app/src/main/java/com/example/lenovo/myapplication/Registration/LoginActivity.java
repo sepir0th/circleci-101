@@ -89,9 +89,12 @@ public class LoginActivity extends BaseLoginActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
-        Log.e("Auth Parse", "Name: " + mAuth.getCurrentUser().getDisplayName()
-                + ", email: " + mAuth.getCurrentUser().getEmail()
-                + ", Image: " + mAuth.getCurrentUser().getPhotoUrl());
+        if(mAuth.getCurrentUser() != null) {
+            Log.e("Auth Parse", "Name: " + mAuth.getCurrentUser().getDisplayName()
+                    + ", email: " + mAuth.getCurrentUser().getEmail()
+                    + ", ID: " + mAuth.getCurrentUser().getUid()
+                    + ", Image: " + mAuth.getCurrentUser().getPhotoUrl());
+        }
 
         super.onCreate(savedInstanceState);
         // Set up the login form.
