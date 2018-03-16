@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.excite.mobile.shop.Activities.Home.Activity_Home;
+import com.excite.mobile.shop.Activities.Info.InfoFragment;
 import com.excite.mobile.shop.Activities.Profile.ProfileActivity;
 import com.excite.mobile.shop.Activities.Search.SearchActivity;
 import com.excite.mobile.shop.R;
+import com.excite.mobile.shop.Utils.AppConstants;
 import com.excite.mobile.shop.WelcomeSliders.PrefManager;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
@@ -90,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAnalytics.logEvent("Click_promo_banner", bundle);
         mFirebaseAnalytics.setCurrentScreen(this, "Dashboard", null /* class override */);
         mFirebaseAnalytics.setUserProperty("favorite_item", "lazada");
+
+        int TabCurrentIndex = getIntent().getIntExtra(AppConstants.NOTIFICATION_DEEPLINK_CLASS, 0);
+        tabLayout.getTabAt(TabCurrentIndex).select();
     }
 
     /**
@@ -104,9 +109,9 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new Activity_Home(), "Beranda");
-        adapter.addFragment(new TwoFragment(), "Info");
-        adapter.addFragment(new TwoFragment(), "Bantuan");
-        adapter.addFragment(new TwoFragment(), "History");
+        adapter.addFragment(new InfoFragment(), "Info");
+        adapter.addFragment(new ThreeFragment(), "Bantuan");
+        adapter.addFragment(new InfoFragment(), "History");
         viewPager.setAdapter(adapter);
     }
 

@@ -37,8 +37,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_099_wallet"
-                        android:layout_alignLeft="@id/toolbar_title"/>
+                        android:layout_alignLeft="@id/toolbar_title"
+                        app:srcCompat="@drawable/ic_099_wallet"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

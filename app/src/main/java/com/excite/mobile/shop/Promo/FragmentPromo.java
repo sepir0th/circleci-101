@@ -34,7 +34,6 @@ public class FragmentPromo extends Fragment {
 
         int pos = this.getArguments().getInt("pos");
         Button buttonImage = l.findViewById(R.id.content);
-        Log.i("Position","Position = " + pos);
 
         buttonImage.setBackground(getResources().getDrawable(this.getArguments().getInt("image")));
 

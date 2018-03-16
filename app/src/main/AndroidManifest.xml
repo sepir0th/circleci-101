@@ -12,13 +12,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_stat_name"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
         <activity
-            android:name="com.excite.mobile.shop.WelcomeSliders.WelcomeActivity"
+            android:name=".WelcomeSliders.WelcomeActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,12 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.excite.mobile.shop.Activities.MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.excite.mobile.shop.Registration.LoginActivity">
+        <activity android:name=".Registration.LoginActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -42,17 +41,18 @@
             android:value="6c7ff41da047fa088f9c7de0bc9d2c4ff3b796ea" />
 
         <activity
-            android:name="com.excite.mobile.shop.Activities.EarnPointDetails.ListEarnPointsMenu"
+            android:name=".Activities.EarnPointDetails.ListEarnPointsMenu"
             android:label="@string/title_activity_list_earn_points_menu" />
-        <activity android:name="com.excite.mobile.shop.Activities.MerchantDetails.MerchantDetails" />
-        <activity android:name="com.excite.mobile.shop.Activities.ExcitePartner.ExcitePartnerMaster" />
-        <activity android:name="com.excite.mobile.shop.Activities.Search.SearchActivity" />
+        <activity android:name=".Activities.MerchantDetails.MerchantDetails"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".Activities.ExcitePartner.ExcitePartnerMaster" />
+        <activity android:name=".Activities.Search.SearchActivity" />
         <activity
-            android:name="com.excite.mobile.shop.Activities.RedeemPointsDetails.RedeemDetailsHome"
+            android:name=".Activities.RedeemPointsDetails.RedeemDetailsHome"
             android:label="@string/title_activity_redeem_details_home"
             android:theme="@style/MyMaterialTheme" />
         <activity
-            android:name="com.excite.mobile.shop.Activities.ExcitePartner.ExcitePartnerList"
+            android:name=".Activities.ExcitePartner.ExcitePartnerList"
             android:label="@string/title_activity_excite_partner_list"
             android:theme="@style/MyMaterialTheme" />
 
@@ -77,12 +77,56 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.excite.mobile.shop.Activities.NoNetwork.NonetworkActivity"
+            android:name=".Activities.NoNetwork.NonetworkActivity"
             android:label="@string/title_activity_nonetwork"
             android:theme="@style/MyMaterialTheme" />
         <activity
-            android:name="com.excite.mobile.shop.Activities.Profile.ProfileActivity"
+            android:name=".Activities.Profile.ProfileActivity"
             android:label="@string/title_activity_profile"
+            android:theme="@style/MyMaterialTheme">
+            <intent-filter>
+                <action android:name="ProfileActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".PushNotification.FirebaseNotificationService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".PushNotification.FirebaseIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- [END firebase_iid_service] -->
+        <service
+            android:name=".PushNotification.FirebaseJobService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
+        <!--
+     Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_stat_name" />
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
+        <activity
+            android:name=".Activities.Info.Activity_InfoDetail"
+            android:label="@string/title_activity__info_detail"
             android:theme="@style/MyMaterialTheme"></activity>
     </application>
 

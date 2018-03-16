@@ -5,6 +5,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.excite.mobile.shop.R;
 
@@ -27,6 +30,11 @@ public class ThreeFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_three, container, false);
+        RelativeLayout LayoutEarnPoint = (RelativeLayout) inflater.inflate(R.layout.fragment_three, container, false);
+
+        WebView myWebView = (WebView) LayoutEarnPoint.findViewById(R.id.webview);
+        myWebView.loadUrl("https://shop.excite.co.id/legals/howitworks/");
+
+        return LayoutEarnPoint;
     }
 }

@@ -19,6 +19,7 @@ public class PrefManager {
     private static final String PREF_NAME = "Excite-pref";
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
     private static final String IS_LOGGED_IN = "IsLoggedIn";
+    private static final String USER_LOGIN_ACCOUNT_ID = "UserLoginAccountID";
 
     public PrefManager(Context context) {
         this._context = context;
@@ -28,6 +29,11 @@ public class PrefManager {
 
     public void setFirstTimeLaunch(boolean isFirstTime) {
         editor.putBoolean(IS_FIRST_TIME_LAUNCH, isFirstTime);
+        editor.commit();
+    }
+
+    public void setUserLoginAccountID(String UserLoginAccountID) {
+        editor.putString(USER_LOGIN_ACCOUNT_ID, UserLoginAccountID);
         editor.commit();
     }
 
@@ -41,5 +47,8 @@ public class PrefManager {
     }
     public boolean isLoginSession() {
         return pref.getBoolean(IS_LOGGED_IN, false);
+    }
+    public String getUserLoginAccountID() {
+        return pref.getString(USER_LOGIN_ACCOUNT_ID, "");
     }
 }

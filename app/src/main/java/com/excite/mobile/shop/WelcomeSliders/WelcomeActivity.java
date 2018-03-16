@@ -1,7 +1,9 @@
 package com.excite.mobile.shop.WelcomeSliders;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +21,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.excite.mobile.shop.Activities.MainActivity;
+import com.excite.mobile.shop.Activities.Profile.ProfileActivity;
+import com.excite.mobile.shop.Database.AppDatabase;
+import com.excite.mobile.shop.Database.Notification;
+import com.excite.mobile.shop.PushNotification.FirebaseNotificationService;
 import com.excite.mobile.shop.R;
 import com.excite.mobile.shop.Registration.LoginActivity;
+import com.excite.mobile.shop.Utils.AppConstants;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -46,15 +55,13 @@ public class WelcomeActivity extends AppCompatActivity {
         }
 
         super.onCreate(savedInstanceState);
-
+        checkIntent(getIntent());
 
         // Checking for first time launch - before calling setContentView()
         prefManager = new PrefManager(this);
 
-        //we hardcode this first to be able to see welcome pages
-        //prefManager.setFirstTimeLaunch(true);
 
-        if (!prefManager.isFirstTimeLaunch()) {
+        if (!prefManager.isFirstTimeLaunch() && !getIntent().hasExtra("click_action")) {
             launchHomeScreen();
             finish();
         }
@@ -113,6 +120,20 @@ public class WelcomeActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkIntent(getIntent());
+//        checkIntent(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        startActivity(getIntent());
+//        checkIntent(getIntent());
+    }
+
     private void addBottomDots(int currentPage) {
         dots = new TextView[layouts.length];
 
@@ -140,6 +161,30 @@ public class WelcomeActivity extends AppCompatActivity {
         prefManager.setFirstTimeLaunch(false);
         startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
         finish();
+    }
+
+    public void checkIntent(Intent intent) {
+        if (intent.hasExtra("click_action")) {
+
+            if (intent.getExtras() != null) {
+
+                //we are using room as our database
+                Notification notification = new Notification();
+                notification.setNotificationID(getIntent().getExtras().get("notification_id").toString());
+                notification.setNotificationTitle(getIntent().getExtras().get("notification title").toString());
+                notification.setNotificationSubtitle(getIntent().getExtras().get("notification subtitle").toString());
+                AppDatabase.getAppDatabase(this).notificationDao().insertAll(notification);
+                AppDatabase.getAppDatabase(this).notificationDao().getAll();
+                int count = AppDatabase.getAppDatabase(this).notificationDao().countNotifications();
+                Log.i("notification", AppDatabase.getAppDatabase(this).notificationDao().getAll().get(count - 1).getNotificationTitle());
+            }
+
+            Intent i = new Intent(getBaseContext(), MainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.putExtra(AppConstants.NOTIFICATION_DEEPLINK_CLASS, 1);
+            startActivity(i);
+            finish();
+        }
     }
 
     //  viewpager change listener

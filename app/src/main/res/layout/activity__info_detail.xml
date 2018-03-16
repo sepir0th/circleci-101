@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    tools:context="com.excite.mobile.shop.Activities.Info.Activity_InfoDetail">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +36,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Earn Point"
+                        android:text="Info"
                         android:textSize="25dp"
                         android:textColor="@color/textColorPrimary"
                         android:id="@+id/toolbar_title" />
@@ -51,23 +49,8 @@
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabMode="scrollable"
-            app:tabTextAppearance="@style/MyNotCapitalTabLayout"
-            app:tabGravity="fill"/>
     </android.support.design.widget.AppBarLayout>
 
+    <include layout="@layout/content_activity_info_detail" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
-
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

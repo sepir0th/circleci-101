@@ -59,4 +59,8 @@
     <string name="title_activity_excite_partner_list">ExcitePartnerList</string>
     <string name="title_activity_nonetwork">NonetworkActivity</string>
     <string name="title_activity_profile">ProfileActivity</string>
+
+    <!-- push notif properties -->
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="title_activity__info_detail">Activity_InfoDetail</string>
 </resources>

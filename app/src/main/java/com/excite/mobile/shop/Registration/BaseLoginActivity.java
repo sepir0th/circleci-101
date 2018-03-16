@@ -37,7 +37,6 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import org.json.JSONObject;
@@ -148,9 +147,11 @@ public class BaseLoginActivity extends AppCompatActivity implements GoogleApiCli
                     public void onCompleted(JSONObject jsonObject,
                                             GraphResponse response) {
 
-                        // Getting FB User Data
+                        // Getting FB Notification Data
                         Bundle facebookData = facebookUtil.getFacebookData(jsonObject);
                         Log.i("Facebook ID = ", facebookData.getString("idFacebook"));
+
+                        prefManager.setUserLoginAccountID(facebookData.getString("idFacebook"));
                         //launchDashboardScreen();
                     }
                 });
@@ -267,6 +268,7 @@ public class BaseLoginActivity extends AppCompatActivity implements GoogleApiCli
 
             Log.e(TAG, "Name: " + personName + ", email: " + email
                     + ", Image: " + personPhotoUrl);
+            prefManager.setUserLoginAccountID(personID);
             launchDashboardScreen();
 
         } else {

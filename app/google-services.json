@@ -8,7 +8,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:454008602982:android:56b8209dd6aa0e1d",
+        "mobilesdk_app_id": "1:454008602982:android:a431b5d35c04aa14",
         "android_client_info": {
           "package_name": "com.excite.mobile.shop"
         }
@@ -17,6 +17,14 @@
         {
           "client_id": "454008602982-ts7t5ngc0c4g6al0idgpk2touu62o083.apps.googleusercontent.com",
           "client_type": 3
+        },
+        {
+          "client_id": "454008602982-f1ahdrrs6jtt3uq0lsebp0f8rifk4g6e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.excite.mobile.shop",
+            "certificate_hash": "e0608d39d47e25ecbf962af543419253081bfd24"
+          }
         }
       ],
       "api_key": [
