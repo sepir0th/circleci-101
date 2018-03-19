@@ -2,6 +2,7 @@ package com.excite.mobile.shop.Activities.EarnPointDetails;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.excite.mobile.shop.Activities.MerchantDetails.MerchantDetails;
@@ -44,20 +46,20 @@ public class ListEarnPointsMenuFragment extends Fragment{
         final ListView listview = LayoutEarnPoint.findViewById(R.id.recipe_list_view);
 
         //lets populate our sample data
-        ListEarnPointsMenuProperties rowProperties = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Starbuck",
-                "Jalan KH Wahid Hasyim no 89, Sarinah", "0.02 KM");
-        ListEarnPointsMenuProperties rowProperties2 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Kopi Tiam",
-                "Jalan KH Wahid Hasyim no 89, Menteng", "0.02 KM");
-        ListEarnPointsMenuProperties rowProperties3 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Killiney",
-                "Jalan KH Wahid Hasyim no 89, Gandaria", "0.02 KM");
-        ListEarnPointsMenuProperties rowProperties4 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Anomali",
-                "Jalan KH Wahid Hasyim no 89, Menteng", "0.02 KM");
-        ListEarnPointsMenuProperties rowProperties5 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Chatime",
-                "Jalan KH Wahid Hasyim no 89, Kebayoran", "0.02 KM");
-        ListEarnPointsMenuProperties rowProperties6 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Lekafe",
-                "Jalan KH Wahid Hasyim no 89, Sabang", "0.02 KM");
-        ListEarnPointsMenuProperties rowProperties7 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Meow Cafe",
-                "Jalan KH Wahid Hasyim no 89, Merauke", "0.02 KM");
+        ListEarnPointsMenuProperties rowProperties = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Voucher Tokopedia Cashback 20Ribu",
+                "Dapatkan cashback 20Ribu dengan minimal pembelian Rp200.000 khusus produk elektronik", "+2% Cashback Point");
+        ListEarnPointsMenuProperties rowProperties2 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Voucher Tokopedia Cashback 20Ribu",
+                "Dapatkan cashback 20Ribu dengan minimal pembelian Rp200.000 khusus produk elektronik", "+2% Cashback Point");
+        ListEarnPointsMenuProperties rowProperties3 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Voucher Tokopedia Cashback 20Ribu",
+                "Dapatkan cashback 20Ribu dengan minimal pembelian Rp200.000 khusus produk elektronik", "+2% Cashback Point");
+        ListEarnPointsMenuProperties rowProperties4 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Voucher Tokopedia Cashback 20Ribu",
+                "Dapatkan cashback 20Ribu dengan minimal pembelian Rp200.000 khusus produk elektronik", "+2% Cashback Point");
+        ListEarnPointsMenuProperties rowProperties5 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Voucher Tokopedia Cashback 20Ribu",
+                "Dapatkan cashback 20Ribu dengan minimal pembelian Rp200.000 khusus produk elektronik", "+2% Cashback Point");
+        ListEarnPointsMenuProperties rowProperties6 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Voucher Tokopedia Cashback 20Ribu",
+                "Dapatkan cashback 20Ribu dengan minimal pembelian Rp200.000 khusus produk elektronik", "+2% Cashback Point");
+        ListEarnPointsMenuProperties rowProperties7 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Voucher Tokopedia Cashback 20Ribu",
+                "Dapatkan cashback 20Ribu dengan minimal pembelian Rp200.000 khusus produk elektronik", "+2% Cashback Point");
 
         //put it inside the collection
         ArrayList<ListEarnPointsMenuProperties> arrRowProperties = new ArrayList<>();
@@ -99,14 +101,29 @@ public class ListEarnPointsMenuFragment extends Fragment{
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View rowView = inflater.inflate(R.layout.listview_adapter_earnpoint, parent, false);
+
+            final float scale = getResources().getDisplayMetrics().density;
+
+            RelativeLayout adapterLayout = rowView.findViewById(R.id.listview_adapter_layout);
+            adapterLayout.getLayoutParams().height = (int) (100 * scale);
+
             TextView textTitle = rowView.findViewById(R.id.firstLine);
             TextView textSubtitle = rowView.findViewById(R.id.secondLine);
+            textSubtitle.setLines(2);
+            textSubtitle.setSingleLine(false);
+
+            ViewGroup.LayoutParams params = textSubtitle.getLayoutParams();
+            params.width=20;
+            textSubtitle.setLayoutParams(params);
+
+
             TextView textDistance = rowView.findViewById(R.id.txt_distances);
             ImageView imageView = rowView.findViewById(R.id.icon);
 
             textTitle.setText(this.rowProperties.get(position).getListTitle());
             textSubtitle.setText(this.rowProperties.get(position).getListSubtitle());
             textDistance.setText(this.rowProperties.get(position).getListDistance());
+            textDistance.setTextColor(Color.RED);
             imageView.setImageResource(this.rowProperties.get(position).getListIcon());
 
 

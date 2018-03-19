@@ -4,13 +4,15 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/windowBackground"
-    tools:context="com.example.lenovo.shop.Activities.Home.Activity_Home">
+    android:background="@color/windowBackground">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabTextAppearance="@style/MyNotCapitalTabLayout"
+        app:tabSelectedTextColor="@color/textColorPrimary"
+        app:tabIndicatorHeight="3dp"
         app:tabMode="fixed"
         app:tabGravity="fill"/>
 

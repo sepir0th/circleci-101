@@ -22,6 +22,10 @@
     <string name="play_again">Play Again</string>
     <string name="title_activity_login">Sign in</string>
 
+    <!--our Main Fragment Title-->
+    <string name="REDEEM_POINT">Tukar Poin</string>
+    <string name="EARN_POINT">Dapatkan Poin</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

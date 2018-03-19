@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+import com.excite.mobile.shop.Activities.MainActivity;
+import com.excite.mobile.shop.Activities.Search.SearchActivity;
 import com.excite.mobile.shop.R;
 import com.excite.mobile.shop.Registration.LoginActivity;
 import com.excite.mobile.shop.WelcomeSliders.PrefManager;
@@ -57,6 +59,15 @@ public class ProfileActivity extends AppCompatActivity implements GoogleApiClien
         mAuth = FirebaseAuth.getInstance();
         configure_FButton();
         configure_GButton();
+
+        Button btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+                finish();
+            }
+        });
     }
 
     private void configure_FButton(){

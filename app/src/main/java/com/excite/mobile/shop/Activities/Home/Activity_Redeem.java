@@ -71,26 +71,29 @@ public class Activity_Redeem extends Fragment implements View.OnClickListener, C
         LinearLayout mainLayout = (LinearLayout )inflater.inflate(R.layout.fragment_redeem, container, false);
         setupMainMenu(mainLayout);
         setupPromo(mainLayout);
-
-        //setup sub header menu gridview
-        GridViewMenu subHeaderGridMenuScanTrans = new GridViewMenu("Scan Transaksi", R.drawable.ic_011_gift_2);
-        GridViewMenu subHeaderGridMenuStamp = new GridViewMenu("Stamp Program", R.drawable.ic_012_browser_1);
-        GridViewMenu subHeaderGridMenuScanQR = new GridViewMenu("Scan QR To Pay", R.drawable.ic_054_smartphone_1);
-        GridViewMenu[] subHeaderGridMenuItems = {subHeaderGridMenuScanTrans, subHeaderGridMenuStamp, subHeaderGridMenuScanQR};
-        GridView subHeaderGridMenu = mainLayout.findViewById(R.id.SubHeaderGridMenu);
-        SubHeaderMenuAdapter subHeaderGridMenuAdapter = new SubHeaderMenuAdapter(getContext(), subHeaderGridMenuItems);
-        subHeaderGridMenu.setAdapter(subHeaderGridMenuAdapter);
-        subHeaderGridMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Log.i("Menu clicked : ", String.valueOf(position));
-                if(position == 3){
-
-                }
-            }
-        });
+        setupGridViewSubMenu(mainLayout);
 
         return mainLayout;
+    }
+
+    public void setupGridViewSubMenu(LinearLayout mainLayout){
+        //setup sub header menu gridview
+//        GridViewMenu subHeaderGridMenuScanTrans = new GridViewMenu("Scan Transaksi", R.drawable.ic_011_gift_2);
+//        GridViewMenu subHeaderGridMenuStamp = new GridViewMenu("Stamp Program", R.drawable.ic_012_browser_1);
+//        GridViewMenu subHeaderGridMenuScanQR = new GridViewMenu("Scan QR To Pay", R.drawable.ic_054_smartphone_1);
+//        GridViewMenu[] subHeaderGridMenuItems = {subHeaderGridMenuScanTrans, subHeaderGridMenuStamp, subHeaderGridMenuScanQR};
+//        GridView subHeaderGridMenu = mainLayout.findViewById(R.id.SubHeaderGridMenu);
+//        SubHeaderMenuAdapter subHeaderGridMenuAdapter = new SubHeaderMenuAdapter(getContext(), subHeaderGridMenuItems);
+//        subHeaderGridMenu.setAdapter(subHeaderGridMenuAdapter);
+//        subHeaderGridMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//                Log.i("Menu clicked : ", String.valueOf(position));
+//                if(position == 3){
+//
+//                }
+//            }
+//        });
     }
 
     public GridViewMenuAdapter setupGridViewMainMenu(){
@@ -115,7 +118,7 @@ public class Activity_Redeem extends Fragment implements View.OnClickListener, C
 
     public void setupMainMenu(LinearLayout mainLayout){
         ArrayList<CardViewMenu> cardViewMenuArrayList = new ArrayList<>();
-        cardViewMenuArrayList.add(new CardViewMenu("Tukar Point", "", this.setupGridViewMainMenu()));
+        cardViewMenuArrayList.add(new CardViewMenu("Tukar Excite Point dengan Produk berikut :", "", this.setupGridViewMainMenu()));
 
         CardViewMenuAdapter adapter = new CardViewMenuAdapter(cardViewMenuArrayList, getActivity(), CARD_VIEW_STATIC_MODE,
                 this);

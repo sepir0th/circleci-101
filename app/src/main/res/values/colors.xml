@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#cf1b1b</color>
-    <color name="colorPrimaryDark">#cf1b1b</color>
-    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="colorPrimary">#e6e8ed</color>
+    <color name="colorPrimaryDark">#e6e8ed</color>
+    <color name="textColorPrimary">#cf1b1b</color>
+    <color name="textColorSecondary">#FFFFFF</color>
     <color name="gridColorBackground">#FFFFFF</color>
-    <color name="windowBackground">#e6e8ed</color>
+    <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
-    <color name="colorAccent">#c8e8ff</color>
+    <color name="colorAccent">#cf1b1b</color>
 
     <!-- Screens background color-->
     <color name="bg_screen1">#f64c73</color>

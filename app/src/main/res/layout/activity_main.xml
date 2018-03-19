@@ -4,10 +4,10 @@
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/MainHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:id="@+id/MainHeader"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.v7.widget.Toolbar
@@ -45,6 +45,7 @@
                         android:text="125,000"
                         android:textSize="25dp"
                         android:textColor="@color/textColorPrimary"
+                        android:textStyle="bold"
                         android:id="@+id/toolbar_title" />
                 </LinearLayout>
                 <Button
@@ -71,6 +72,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/textColorPrimary"
+        app:tabTextColor="@color/textColorSecondary"
         app:tabMode="fixed"
         app:tabGravity="fill"/>
 </RelativeLayout>

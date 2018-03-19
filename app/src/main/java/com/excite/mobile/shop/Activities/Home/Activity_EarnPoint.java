@@ -133,15 +133,15 @@ public class Activity_EarnPoint extends Fragment implements View.OnClickListener
     @Override
     public void cardViewOnClick(AdapterView<?> adapterView, View view, int position, long l, int cardIndex) {
         if(cardIndex == 0) {
-            Intent excitePartnerMaster = new Intent(getActivity(), ListEarnPointsMenu.class);
-            excitePartnerMaster.putParcelableArrayListExtra(AppConstants.TAB_TITLE, gridViewMenus_onlineShop);
-            excitePartnerMaster.putExtra(AppConstants.TAB_CURRENT_INDEX, position);
-            startActivity(excitePartnerMaster);
+            Intent listEarnPointsMenu = new Intent(getActivity(), ListEarnPointsMenu.class);
+            listEarnPointsMenu.putParcelableArrayListExtra(AppConstants.TAB_TITLE, gridViewMenus_onlineShop);
+            listEarnPointsMenu.putExtra(AppConstants.TAB_CURRENT_INDEX, position);
+            startActivity(listEarnPointsMenu);
         }else if(cardIndex == 1){
-            Intent excitePartnerMaster = new Intent(getActivity(), ListEarnPointsMenu.class);
-            excitePartnerMaster.putParcelableArrayListExtra(AppConstants.TAB_TITLE, gridViewMenus_bonusPoint);
-            excitePartnerMaster.putExtra(AppConstants.TAB_CURRENT_INDEX, position);
-            startActivity(excitePartnerMaster);
+            Intent listEarnPointsMenu = new Intent(getActivity(), ListEarnPointsMenu.class);
+            listEarnPointsMenu.putParcelableArrayListExtra(AppConstants.TAB_TITLE, gridViewMenus_bonusPoint);
+            listEarnPointsMenu.putExtra(AppConstants.TAB_CURRENT_INDEX, position);
+            startActivity(listEarnPointsMenu);
         }else if(cardIndex == 4){
             Intent excitePartnerMaster = new Intent(getActivity(), ExcitePartnerMaster.class);
             startActivity(excitePartnerMaster);

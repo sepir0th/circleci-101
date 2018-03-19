@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -123,6 +124,9 @@ public class CardViewMenuAdapter extends RecyclerView.Adapter<CardViewMenuAdapte
             btnListAllMenu = itemView.findViewById(R.id.btn_listAllMenu);
             if(cardMode == CARD_VIEW_STATIC_MODE || cardMode == GRID_MODE_CARD){
                 btnListAllMenu.setVisibility(View.GONE);
+                if(cardMode == CARD_VIEW_STATIC_MODE){
+                    txtEmpName.setGravity(Gravity.CENTER_HORIZONTAL);
+                }
             }
         }
     }

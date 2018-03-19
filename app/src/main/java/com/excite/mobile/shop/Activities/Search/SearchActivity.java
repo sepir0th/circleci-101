@@ -2,14 +2,19 @@ package com.excite.mobile.shop.Activities.Search;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
+import com.excite.mobile.shop.Activities.MainActivity;
 import com.excite.mobile.shop.R;
+import com.excite.mobile.shop.Registration.BaseLoginActivity;
 
 public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
@@ -20,6 +25,14 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        Button btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     /**

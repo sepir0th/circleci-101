@@ -16,15 +16,17 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical" >
-            <GridView
-                android:id="@+id/SubHeaderGridMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnWidth="100dp"
-                android:numColumns="3"
-                android:paddingVertical="0dp"
-                android:verticalSpacing="0dp"
-                android:horizontalSpacing="10dp"/>
+
+
+            <!--<GridView-->
+                <!--android:id="@+id/SubHeaderGridMenu"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:columnWidth="100dp"-->
+                <!--android:numColumns="3"-->
+                <!--android:paddingVertical="0dp"-->
+                <!--android:verticalSpacing="0dp"-->
+                <!--android:horizontalSpacing="10dp"/>-->
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"

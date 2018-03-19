@@ -13,7 +13,9 @@
     </style>
 
     <style name="SplashTheme" parent="MyMaterialTheme.Base">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:windowBackground">@drawable/welcome_screen</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>
