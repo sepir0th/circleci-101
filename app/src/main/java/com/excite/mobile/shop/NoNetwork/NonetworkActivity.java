@@ -1,4 +1,4 @@
-package com.excite.mobile.shop.Activities.NoNetwork;
+package com.excite.mobile.shop.NoNetwork;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

@@ -10,7 +10,7 @@ import com.excite.mobile.shop.Activities.Profile.ProfileActivity;
 import com.excite.mobile.shop.Activities.Search.SearchActivity;
 import com.excite.mobile.shop.R;
 import com.excite.mobile.shop.Utils.AppConstants;
-import com.excite.mobile.shop.WelcomeSliders.PrefManager;
+import com.excite.mobile.shop.Activities.WelcomeSliders.PrefManager;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -94,24 +94,19 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAnalytics.setUserProperty("favorite_item", "lazada");
 
         int TabCurrentIndex = getIntent().getIntExtra(AppConstants.NOTIFICATION_DEEPLINK_CLASS, 0);
-        tabLayout.getTabAt(TabCurrentIndex).select();
-    }
-
-    /**
-     * our function to move the activity into the dashboard.
-     */
-    public void launchDashboardScreen() {
-        prefManager.setLoginSession(true);
-        startActivity(new Intent(MainActivity.this, MainActivity.class));
-        finish();
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_004_magnifying_glass);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_002_credit_card_6);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_003_shopping_bag_2);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_005_shirt);
+        tabLayout.getTabAt(getIntent().getIntExtra("MainActivity_SelectedTab", 0)).select();
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Activity_Home(), "Beranda");
-        adapter.addFragment(new InfoFragment(), "Info");
-        adapter.addFragment(new ThreeFragment(), "Bantuan");
-        adapter.addFragment(new InfoFragment(), "History");
+        adapter.addFragment(new Activity_Home(), "");
+        adapter.addFragment(new InfoFragment(), "");
+        adapter.addFragment(new ThreeFragment(), "");
+        adapter.addFragment(new InfoFragment(), "");
         viewPager.setAdapter(adapter);
     }
 

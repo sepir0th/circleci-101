@@ -1,4 +1,4 @@
-package com.excite.mobile.shop.Activities.ExcitePartner;
+package com.excite.mobile.shop.Activities.Home.EarnPointDetails.ExcitePartner;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -12,10 +12,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.excite.mobile.shop.Activities.MainActivity;
-import com.excite.mobile.shop.Activities.Search.SearchActivity;
 import com.excite.mobile.shop.R;
-import com.excite.mobile.shop.Registration.LoginActivity;
-import com.excite.mobile.shop.WelcomeSliders.PrefManager;
+import com.excite.mobile.shop.Activities.Registration.LoginActivity;
+import com.excite.mobile.shop.Activities.WelcomeSliders.PrefManager;
 import com.facebook.CallbackManager;
 import com.facebook.login.LoginManager;
 import com.facebook.login.widget.LoginButton;

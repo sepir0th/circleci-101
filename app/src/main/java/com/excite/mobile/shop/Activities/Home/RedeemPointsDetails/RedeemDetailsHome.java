@@ -1,4 +1,4 @@
-package com.excite.mobile.shop.Activities.RedeemPointsDetails;
+package com.excite.mobile.shop.Activities.Home.RedeemPointsDetails;
 
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
@@ -15,8 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.excite.mobile.shop.Activities.MainActivity;
-import com.excite.mobile.shop.Activities.Profile.ProfileActivity;
 import com.excite.mobile.shop.Activities.Search.SearchActivity;
 import com.excite.mobile.shop.R;
 

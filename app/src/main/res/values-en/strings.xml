@@ -43,6 +43,12 @@
     <string name="title_dashboard">Luxury Dining</string>
     <string name="title_notifications">Health &amp; Beauty</string>
 
+    <string name="card_title_online_shop">Belanja Online</string>
+    <string name="card_title_bonus_point">Bonus Point</string>
+    <string name="card_title_stamp_program">Stamp Program</string>
+    <string name="card_title_shop_in_merchant">Belanja di Merchant</string>
+    <string name="card_title_excite_partner">Partner Excite</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_redeem_details_home">RedeemDetailsHome</string>

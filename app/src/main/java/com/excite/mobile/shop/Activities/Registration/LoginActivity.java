@@ -1,4 +1,4 @@
-package com.excite.mobile.shop.Registration;
+package com.excite.mobile.shop.Activities.Registration;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -39,13 +40,12 @@ import com.android.volley.VolleyError;
 import com.example.excitemobilesdk.WebService.WebServiceRequest;
 import com.example.excitemobilesdk.WebService.WebServiceRequestListener;
 import com.example.excitemobilesdk.WebService.WebServiceSingleton;
-import com.excite.mobile.shop.Database.AppDatabase;
-import com.excite.mobile.shop.Database.Notification;
 import com.excite.mobile.shop.R;
 import com.excite.mobile.shop.Utils.AppConstants;
 import com.excite.mobile.shop.Utils.NetworkingButton;
 import com.excite.mobile.shop.Utils.NetworkingButtonListener;
 import com.facebook.login.LoginResult;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -326,6 +326,18 @@ public class LoginActivity extends BaseLoginActivity implements LoaderCallbacks<
     }
 
     @Override
+    public void storetoFirebase(Intent data) {
+        showProgress(true);
+        super.storetoFirebase(data);
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        super.onConnectionFailed(connectionResult);
+        showProgress(false);
+    }
+
+    @Override
     public void onResponse(String response) {
         Log.i("response string",response.toString());
 
@@ -351,6 +363,7 @@ public class LoginActivity extends BaseLoginActivity implements LoaderCallbacks<
      */
     @Override
     public void onSuccess(LoginResult loginResult) {
+        showProgress(true);
         super.onSuccess(loginResult);
     }
 

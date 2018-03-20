@@ -16,10 +16,10 @@ import com.example.excitemobilesdk.CardViewMenu.CardViewMenuAdapter;
 import com.example.excitemobilesdk.CardViewMenu.CardViewMenuListener;
 import com.example.excitemobilesdk.CustomGridView.GridViewMenu;
 import com.example.excitemobilesdk.CustomGridView.GridViewMenuAdapter;
-import com.excite.mobile.shop.Activities.EarnPointDetails.ListEarnPointsMenu;
-import com.excite.mobile.shop.Activities.ExcitePartner.ExcitePartnerList;
-import com.excite.mobile.shop.Activities.ExcitePartner.ExcitePartnerMaster;
-import com.excite.mobile.shop.Activities.MerchantDetails.MerchantDetails;
+import com.excite.mobile.shop.Activities.Home.EarnPointDetails.ListEarnPointsMenu;
+import com.excite.mobile.shop.Activities.Home.EarnPointDetails.ExcitePartner.ExcitePartnerList;
+import com.excite.mobile.shop.Activities.Home.EarnPointDetails.ExcitePartner.ExcitePartnerMaster;
+import com.excite.mobile.shop.Activities.Home.EarnPointDetails.MerchantDetails.MerchantDetails;
 import com.excite.mobile.shop.R;
 import com.excite.mobile.shop.Utils.AppConstants;
 
@@ -109,11 +109,11 @@ public class Activity_EarnPoint extends Fragment implements View.OnClickListener
         GridViewMenuAdapter gridViewMenuAdapter_BonusPoint = new GridViewMenuAdapter(getContext(), gridViewMenus_BonusPoint);
 
         cardViewMenuArrayList = new ArrayList<>();
-        cardViewMenuArrayList.add(new CardViewMenu("Belanja Online", "Dapatkan Cashback point dengan belanja online", gridViewMenuAdapter_onlineShop, 4));
-        cardViewMenuArrayList.add(new CardViewMenu("Bonus Point", "Dapatkan bonus point dengan melakukan aksi gratis", gridViewMenuAdapter_BonusPoint));
-        cardViewMenuArrayList.add(new CardViewMenu("Stamp Program", "Koleksi stamp dengan mengunjungi merchant favorit", gridViewMenuAdapter));
-        cardViewMenuArrayList.add(new CardViewMenu("Belanja di Merchant", "Dapatkan Point dari setiap transaksi di merchant favorite", gridViewMenuAdapter));
-        cardViewMenuArrayList.add(new CardViewMenu("Partner Excite", "Dapatkan point dari partner Excite", gridViewMenuAdapter));
+        cardViewMenuArrayList.add(new CardViewMenu(getString(R.string.card_title_online_shop), "Dapatkan Cashback point dengan belanja online", gridViewMenuAdapter_onlineShop, 4));
+        cardViewMenuArrayList.add(new CardViewMenu(getString(R.string.card_title_bonus_point), "Dapatkan bonus point dengan melakukan aksi gratis", gridViewMenuAdapter_BonusPoint));
+        cardViewMenuArrayList.add(new CardViewMenu(getString(R.string.card_title_stamp_program), "Koleksi stamp dengan mengunjungi merchant favorit", gridViewMenuAdapter));
+        cardViewMenuArrayList.add(new CardViewMenu(getString(R.string.card_title_shop_in_merchant), "Dapatkan Point dari setiap transaksi di merchant favorite", gridViewMenuAdapter));
+        cardViewMenuArrayList.add(new CardViewMenu(getString(R.string.card_title_excite_partner), "Dapatkan point dari partner Excite", gridViewMenuAdapter));
 
         adapter = new CardViewMenuAdapter(cardViewMenuArrayList, getActivity(), CARD_VIEW_LIST_MODE, this);
         adapter.setColumnNum(12);
@@ -134,13 +134,15 @@ public class Activity_EarnPoint extends Fragment implements View.OnClickListener
     public void cardViewOnClick(AdapterView<?> adapterView, View view, int position, long l, int cardIndex) {
         if(cardIndex == 0) {
             Intent listEarnPointsMenu = new Intent(getActivity(), ListEarnPointsMenu.class);
-            listEarnPointsMenu.putParcelableArrayListExtra(AppConstants.TAB_TITLE, gridViewMenus_onlineShop);
+            listEarnPointsMenu.putParcelableArrayListExtra(AppConstants.TAB_CONTENT, gridViewMenus_onlineShop);
             listEarnPointsMenu.putExtra(AppConstants.TAB_CURRENT_INDEX, position);
+            listEarnPointsMenu.putExtra(AppConstants.TAB_TITLE, cardViewMenuArrayList.get(cardIndex).getEmployeeName());
             startActivity(listEarnPointsMenu);
         }else if(cardIndex == 1){
             Intent listEarnPointsMenu = new Intent(getActivity(), ListEarnPointsMenu.class);
-            listEarnPointsMenu.putParcelableArrayListExtra(AppConstants.TAB_TITLE, gridViewMenus_bonusPoint);
+            listEarnPointsMenu.putParcelableArrayListExtra(AppConstants.TAB_CONTENT, gridViewMenus_bonusPoint);
             listEarnPointsMenu.putExtra(AppConstants.TAB_CURRENT_INDEX, position);
+            listEarnPointsMenu.putExtra(AppConstants.TAB_TITLE, cardViewMenuArrayList.get(cardIndex).getEmployeeName());
             startActivity(listEarnPointsMenu);
         }else if(cardIndex == 4){
             Intent excitePartnerMaster = new Intent(getActivity(), ExcitePartnerMaster.class);
@@ -153,8 +155,23 @@ public class Activity_EarnPoint extends Fragment implements View.OnClickListener
 
     @Override
     public void cardViewShowAllOnClick(CardViewMenuAdapter.MenuViewHolder holder, int position, View view) {
-        if(position != 4) {
+        if(position == 0){
+            Intent intentOnlineShop = new Intent(getActivity(), ListEarnPointsMenu.class);
+            intentOnlineShop.putParcelableArrayListExtra(AppConstants.TAB_CONTENT, gridViewMenus_onlineShop);
+            intentOnlineShop.putExtra(AppConstants.TAB_TITLE, cardViewMenuArrayList.get(position).getEmployeeName());
+            startActivity(intentOnlineShop);
+        }else if(position == 1) {
+            Intent intentBonusPoint = new Intent(getActivity(), ListEarnPointsMenu.class);
+            intentBonusPoint.putParcelableArrayListExtra(AppConstants.TAB_CONTENT, gridViewMenus_bonusPoint);
+            intentBonusPoint.putExtra(AppConstants.TAB_TITLE, cardViewMenuArrayList.get(position).getEmployeeName());
+            startActivity(intentBonusPoint);
+        }else if(position == 2) {
+            Intent intentStampProgram = new Intent(getActivity(), ListEarnPointsMenu.class);
+            intentStampProgram.putExtra(AppConstants.TAB_TITLE, cardViewMenuArrayList.get(position).getEmployeeName());
+            startActivity(intentStampProgram);
+        }else if(position == 3) {
             Intent excitePartnerMaster = new Intent(getActivity(), ListEarnPointsMenu.class);
+            excitePartnerMaster.putExtra(AppConstants.TAB_TITLE, cardViewMenuArrayList.get(position).getEmployeeName());
             startActivity(excitePartnerMaster);
         }else{
             Intent excitePartnerList = new Intent(getActivity(), ExcitePartnerList.class);

@@ -1,8 +1,7 @@
-package com.excite.mobile.shop.Activities.EarnPointDetails;
+package com.excite.mobile.shop.Activities.Home.EarnPointDetails.BonusPointDetails;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,13 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.excite.mobile.shop.Activities.MerchantDetails.MerchantDetails;
+import com.excite.mobile.shop.Activities.Home.EarnPointDetails.MerchantDetails.MerchantDetails;
 import com.excite.mobile.shop.R;
 
 import java.util.ArrayList;
@@ -26,10 +26,9 @@ import java.util.ArrayList;
  * Created by erwinlim on 12/02/18.
  */
 
-public class ListEarnPointsMenuFragment extends Fragment{
-    private ListView mListView;
+public class BonusPointDetailsFragment extends Fragment{
 
-    public ListEarnPointsMenuFragment() {
+    public BonusPointDetailsFragment() {
         // Required empty public constructor
     }
 
@@ -46,23 +45,23 @@ public class ListEarnPointsMenuFragment extends Fragment{
         final ListView listview = LayoutEarnPoint.findViewById(R.id.recipe_list_view);
 
         //lets populate our sample data
-        ListEarnPointsMenuProperties rowProperties = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Voucher Tokopedia Cashback 20Ribu",
-                "Dapatkan cashback 20Ribu dengan minimal pembelian Rp200.000 khusus produk elektronik", "+2% Cashback Point");
-        ListEarnPointsMenuProperties rowProperties2 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Voucher Tokopedia Cashback 20Ribu",
-                "Dapatkan cashback 20Ribu dengan minimal pembelian Rp200.000 khusus produk elektronik", "+2% Cashback Point");
-        ListEarnPointsMenuProperties rowProperties3 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Voucher Tokopedia Cashback 20Ribu",
-                "Dapatkan cashback 20Ribu dengan minimal pembelian Rp200.000 khusus produk elektronik", "+2% Cashback Point");
-        ListEarnPointsMenuProperties rowProperties4 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Voucher Tokopedia Cashback 20Ribu",
-                "Dapatkan cashback 20Ribu dengan minimal pembelian Rp200.000 khusus produk elektronik", "+2% Cashback Point");
-        ListEarnPointsMenuProperties rowProperties5 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Voucher Tokopedia Cashback 20Ribu",
-                "Dapatkan cashback 20Ribu dengan minimal pembelian Rp200.000 khusus produk elektronik", "+2% Cashback Point");
-        ListEarnPointsMenuProperties rowProperties6 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Voucher Tokopedia Cashback 20Ribu",
-                "Dapatkan cashback 20Ribu dengan minimal pembelian Rp200.000 khusus produk elektronik", "+2% Cashback Point");
-        ListEarnPointsMenuProperties rowProperties7 = new ListEarnPointsMenuProperties(R.drawable.starbucks_logo, "Voucher Tokopedia Cashback 20Ribu",
-                "Dapatkan cashback 20Ribu dengan minimal pembelian Rp200.000 khusus produk elektronik", "+2% Cashback Point");
+        BonusPointDetailsProperties rowProperties = new BonusPointDetailsProperties(R.drawable.starbucks_logo, "Dapatkan 1 Hazelnut Cup C Tall",
+                "Djakarta Theater (Skyline) Lantai GF, Jalan M.H. Thamrin No. 9, Kebon Sirih, Menteng, RT.2/RW.1, RT.2/RW.1, Kb. Sirih, Menteng", "0.02KM away");
+        BonusPointDetailsProperties rowProperties2 = new BonusPointDetailsProperties(R.drawable.starbucks_logo, "Dapatkan 1 Hazelnut Cup C Tall",
+                "Djakarta Theater (Skyline) Lantai GF, Jalan M.H. Thamrin No. 9, Kebon Sirih, Menteng, RT.2/RW.1, RT.2/RW.1, Kb. Sirih, Menteng", "0.02KM away");
+        BonusPointDetailsProperties rowProperties3 = new BonusPointDetailsProperties(R.drawable.starbucks_logo, "Dapatkan 1 Hazelnut Cup C Tall",
+                "Djakarta Theater (Skyline) Lantai GF, Jalan M.H. Thamrin No. 9, Kebon Sirih, Menteng, RT.2/RW.1, RT.2/RW.1, Kb. Sirih, Menteng", "0.02KM away");
+        BonusPointDetailsProperties rowProperties4 = new BonusPointDetailsProperties(R.drawable.starbucks_logo, "Dapatkan 1 Hazelnut Cup C Tall",
+                "Djakarta Theater (Skyline) Lantai GF, Jalan M.H. Thamrin No. 9, Kebon Sirih, Menteng, RT.2/RW.1, RT.2/RW.1, Kb. Sirih, Menteng", "0.02KM away");
+        BonusPointDetailsProperties rowProperties5 = new BonusPointDetailsProperties(R.drawable.starbucks_logo, "Dapatkan 1 Hazelnut Cup C Tall",
+                "Djakarta Theater (Skyline) Lantai GF, Jalan M.H. Thamrin No. 9, Kebon Sirih, Menteng, RT.2/RW.1, RT.2/RW.1, Kb. Sirih, Menteng", "0.02KM away");
+        BonusPointDetailsProperties rowProperties6 = new BonusPointDetailsProperties(R.drawable.starbucks_logo, "Dapatkan 1 Hazelnut Cup C Tall",
+                "Djakarta Theater (Skyline) Lantai GF, Jalan M.H. Thamrin No. 9, Kebon Sirih, Menteng, RT.2/RW.1, RT.2/RW.1, Kb. Sirih, Menteng", "0.02KM away");
+        BonusPointDetailsProperties rowProperties7 = new BonusPointDetailsProperties(R.drawable.starbucks_logo, "Dapatkan 1 Hazelnut Cup C Tall",
+                "Djakarta Theater (Skyline) Lantai GF, Jalan M.H. Thamrin No. 9, Kebon Sirih, Menteng, RT.2/RW.1, RT.2/RW.1, Kb. Sirih, Menteng", "0.02KM away");
 
         //put it inside the collection
-        ArrayList<ListEarnPointsMenuProperties> arrRowProperties = new ArrayList<>();
+        ArrayList<BonusPointDetailsProperties> arrRowProperties = new ArrayList<>();
         arrRowProperties.add(rowProperties);
         arrRowProperties.add(rowProperties2);
         arrRowProperties.add(rowProperties3);
@@ -86,11 +85,11 @@ public class ListEarnPointsMenuFragment extends Fragment{
         return LayoutEarnPoint;
     }
 
-    public class MySimpleArrayAdapter extends ArrayAdapter<ListEarnPointsMenuProperties> {
+    public class MySimpleArrayAdapter extends ArrayAdapter<BonusPointDetailsProperties> {
         private final Context context;
-        private final ArrayList<ListEarnPointsMenuProperties> rowProperties;
+        private final ArrayList<BonusPointDetailsProperties> rowProperties;
 
-        public MySimpleArrayAdapter(Context context, ArrayList<ListEarnPointsMenuProperties> rowProperties) {
+        public MySimpleArrayAdapter(Context context, ArrayList<BonusPointDetailsProperties> rowProperties) {
             super(context, -1, rowProperties);
             this.context = context;
             this.rowProperties = rowProperties;
@@ -112,10 +111,16 @@ public class ListEarnPointsMenuFragment extends Fragment{
             textSubtitle.setLines(2);
             textSubtitle.setSingleLine(false);
 
-            ViewGroup.LayoutParams params = textSubtitle.getLayoutParams();
-            params.width=20;
-            textSubtitle.setLayoutParams(params);
+            Button btn_shop = rowView.findViewById(R.id.btn_shop);
+            btn_shop.setVisibility(View.GONE);
+            Button btn_promo = rowView.findViewById(R.id.btn_promo);
+            btn_promo.setVisibility(View.GONE);
 
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT);
+            params.addRule(RelativeLayout.BELOW, R.id.firstLine);
+            params.addRule(RelativeLayout.RIGHT_OF, R.id.icon);
+            textSubtitle.setLayoutParams(params);
 
             TextView textDistance = rowView.findViewById(R.id.txt_distances);
             ImageView imageView = rowView.findViewById(R.id.icon);
@@ -123,7 +128,6 @@ public class ListEarnPointsMenuFragment extends Fragment{
             textTitle.setText(this.rowProperties.get(position).getListTitle());
             textSubtitle.setText(this.rowProperties.get(position).getListSubtitle());
             textDistance.setText(this.rowProperties.get(position).getListDistance());
-            textDistance.setTextColor(Color.RED);
             imageView.setImageResource(this.rowProperties.get(position).getListIcon());
 
 

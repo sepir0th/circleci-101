@@ -1,4 +1,4 @@
-package com.excite.mobile.shop.Promo;
+package com.excite.mobile.shop.Activities.Home.Promo;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

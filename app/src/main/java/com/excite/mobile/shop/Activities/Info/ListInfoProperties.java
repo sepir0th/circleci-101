@@ -1,12 +1,12 @@
 package com.excite.mobile.shop.Activities.Info;
 
-import com.excite.mobile.shop.Activities.EarnPointDetails.ListEarnPointsMenuProperties;
+import com.excite.mobile.shop.Activities.Home.EarnPointDetails.ShopOnline.ShopOnlineProperties;
 
 /**
  * Created by erwinlim on 16/03/18.
  */
 
-public class ListInfoProperties extends ListEarnPointsMenuProperties {
+public class ListInfoProperties extends ShopOnlineProperties {
 
     private String strNotificationID;
 

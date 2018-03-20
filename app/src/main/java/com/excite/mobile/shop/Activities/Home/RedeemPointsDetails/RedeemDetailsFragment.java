@@ -1,4 +1,4 @@
-package com.excite.mobile.shop.Activities.RedeemPointsDetails;
+package com.excite.mobile.shop.Activities.Home.RedeemPointsDetails;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

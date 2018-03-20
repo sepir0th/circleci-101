@@ -9,25 +9,20 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.excite.mobile.shop.Activities.Info.Activity_InfoDetail;
 import com.excite.mobile.shop.Activities.MainActivity;
-import com.excite.mobile.shop.Activities.Profile.ProfileActivity;
 import com.excite.mobile.shop.Database.AppDatabase;
 import com.excite.mobile.shop.Database.Notification;
 import com.excite.mobile.shop.R;
 import com.excite.mobile.shop.Utils.AppConstants;
-import com.excite.mobile.shop.WelcomeSliders.WelcomeActivity;
-import com.firebase.jobdispatcher.Constraint;
 import com.firebase.jobdispatcher.FirebaseJobDispatcher;
 import com.firebase.jobdispatcher.GooglePlayDriver;
 import com.firebase.jobdispatcher.Job;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-
-import java.util.Map;
 
 /**
  * Created by erwinlim on 14/03/18.
@@ -90,7 +85,9 @@ public class FirebaseNotificationService extends FirebaseMessagingService {
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
-        this.sendNotification(remoteMessage.getData().get("notification subtitle").toString(), remoteMessage.getData().get("notification title").toString());
+        this.sendNotification(remoteMessage.getData().get("notification subtitle").toString(),
+                remoteMessage.getData().get("notification title").toString(),
+                remoteMessage.getData().get("notification_id").toString());
     }
     // [END receive_message]
 
@@ -120,8 +117,9 @@ public class FirebaseNotificationService extends FirebaseMessagingService {
      *
      * @param messageBody FCM message body received.
      */
-    private void sendNotification(String messageBody, String messageTitle) {
-        Intent intent = new Intent(this, MainActivity.class);
+    private void sendNotification(String messageBody, String messageTitle, String messageID) {
+        Intent intent = new Intent(this, Activity_InfoDetail.class);
+        intent.putExtra(AppConstants.NOTIFICATION_ID, messageID);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra(AppConstants.NOTIFICATION_DEEPLINK_CLASS, 1);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,

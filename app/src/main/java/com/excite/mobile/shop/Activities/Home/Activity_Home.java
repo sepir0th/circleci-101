@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.excite.mobile.shop.Promo.PromoAdapter;
+import com.excite.mobile.shop.Activities.Home.Promo.PromoAdapter;
 import com.excite.mobile.shop.R;
 
 import java.util.ArrayList;

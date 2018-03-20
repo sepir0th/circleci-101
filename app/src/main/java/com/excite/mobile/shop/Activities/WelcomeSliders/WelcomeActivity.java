@@ -1,9 +1,7 @@
-package com.excite.mobile.shop.WelcomeSliders;
+package com.excite.mobile.shop.Activities.WelcomeSliders;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,13 +19,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.excite.mobile.shop.Activities.Info.Activity_InfoDetail;
+import com.excite.mobile.shop.Activities.Info.ListInfoProperties;
 import com.excite.mobile.shop.Activities.MainActivity;
-import com.excite.mobile.shop.Activities.Profile.ProfileActivity;
 import com.excite.mobile.shop.Database.AppDatabase;
 import com.excite.mobile.shop.Database.Notification;
-import com.excite.mobile.shop.PushNotification.FirebaseNotificationService;
 import com.excite.mobile.shop.R;
-import com.excite.mobile.shop.Registration.LoginActivity;
+import com.excite.mobile.shop.Activities.Registration.LoginActivity;
 import com.excite.mobile.shop.Utils.AppConstants;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -165,9 +163,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void checkIntent(Intent intent) {
         if (intent.hasExtra("click_action")) {
-
             if (intent.getExtras() != null) {
-
                 //we are using room as our database
                 Notification notification = new Notification();
                 notification.setNotificationID(getIntent().getExtras().get("notification_id").toString());
@@ -179,9 +175,10 @@ public class WelcomeActivity extends AppCompatActivity {
                 Log.i("notification", AppDatabase.getAppDatabase(this).notificationDao().getAll().get(count - 1).getNotificationTitle());
             }
 
-            Intent i = new Intent(getBaseContext(), MainActivity.class);
+            Intent i = new Intent(getBaseContext(), Activity_InfoDetail.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             i.putExtra(AppConstants.NOTIFICATION_DEEPLINK_CLASS, 1);
+            i.putExtra(AppConstants.NOTIFICATION_ID, getIntent().getExtras().get("notification_id").toString());
             startActivity(i);
             finish();
         }

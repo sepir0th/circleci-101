@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import com.excite.mobile.shop.Activities.NoNetwork.NonetworkActivity;
+import com.excite.mobile.shop.NoNetwork.NonetworkActivity;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

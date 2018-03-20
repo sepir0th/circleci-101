@@ -1,4 +1,4 @@
-package com.excite.mobile.shop.Registration;
+package com.excite.mobile.shop.Activities.Registration;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import android.widget.Button;
 import com.excite.mobile.shop.Activities.MainActivity;
 import com.excite.mobile.shop.R;
 import com.excite.mobile.shop.Utils.FacebookUtil;
-import com.excite.mobile.shop.WelcomeSliders.PrefManager;
+import com.excite.mobile.shop.Activities.WelcomeSliders.PrefManager;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -56,7 +56,8 @@ import java.util.Arrays;
  *  </p>
  */
 
-public class BaseLoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, FacebookCallback<LoginResult>{
+public class BaseLoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,
+        FacebookCallback<LoginResult>{
     private SignInButton signInButton;
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int RC_SIGN_IN = 007;
@@ -187,7 +188,7 @@ public class BaseLoginActivity extends AppCompatActivity implements GoogleApiCli
         }
     }
 
-    private void storetoFirebase(Intent data){
+    public void storetoFirebase(Intent data){
         Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
         try {
             // Google Sign In was successful, authenticate with Firebase

@@ -1,4 +1,4 @@
-package com.excite.mobile.shop.WelcomeSliders;
+package com.excite.mobile.shop.Activities.WelcomeSliders;
 
 import android.content.Context;
 import android.content.SharedPreferences;

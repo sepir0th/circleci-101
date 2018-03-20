@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.LinearLayout;
 
 import com.example.excitemobilesdk.CardViewMenu.CardViewMenu;
@@ -20,9 +19,8 @@ import com.example.excitemobilesdk.CardViewMenu.CardViewMenuAdapter;
 import com.example.excitemobilesdk.CardViewMenu.CardViewMenuListener;
 import com.example.excitemobilesdk.CustomGridView.GridViewMenu;
 import com.example.excitemobilesdk.CustomGridView.GridViewMenuAdapter;
-import com.example.excitemobilesdk.CustomGridView.SubHeaderMenuAdapter;
-import com.excite.mobile.shop.Activities.RedeemPointsDetails.RedeemDetailsHome;
-import com.excite.mobile.shop.Promo.PromoAdapter;
+import com.excite.mobile.shop.Activities.Home.RedeemPointsDetails.RedeemDetailsHome;
+import com.excite.mobile.shop.Activities.Home.Promo.PromoAdapter;
 import com.excite.mobile.shop.R;
 
 import java.util.ArrayList;

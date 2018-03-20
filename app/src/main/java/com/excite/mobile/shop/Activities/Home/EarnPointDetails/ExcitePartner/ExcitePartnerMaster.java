@@ -1,4 +1,4 @@
-package com.excite.mobile.shop.Activities.MerchantDetails;
+package com.excite.mobile.shop.Activities.Home.EarnPointDetails.ExcitePartner;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -8,8 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 
 import com.excite.mobile.shop.R;
@@ -17,17 +15,14 @@ import com.excite.mobile.shop.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MerchantDetails extends AppCompatActivity {
+public class ExcitePartnerMaster extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_merchant_details);
+        setContentView(R.layout.activity_excite_partner_master);
 
         viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -46,9 +41,8 @@ public class MerchantDetails extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Fragment_Offerings(), "Penawaran");
-        adapter.addFragment(new Fragment_Offerings(), "Cara Penggunaan");
-        adapter.addFragment(new Fragment_Offerings(), "Syarat & Ketentuan");
+        adapter.addFragment(new ExcitePartnerDescription(), "Deskripsi");
+        adapter.addFragment(new ExcitePartnerDescription(), "Cara Kerja");
         viewPager.setAdapter(adapter);
     }
 

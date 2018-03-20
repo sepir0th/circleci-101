@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
         <activity
-            android:name=".WelcomeSliders.WelcomeActivity"
+            android:name=".Activities.WelcomeSliders.WelcomeActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Registration.LoginActivity">
+        <activity android:name=".Activities.Registration.LoginActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -41,18 +41,18 @@
             android:value="6c7ff41da047fa088f9c7de0bc9d2c4ff3b796ea" />
 
         <activity
-            android:name=".Activities.EarnPointDetails.ListEarnPointsMenu"
+            android:name=".Activities.Home.EarnPointDetails.ListEarnPointsMenu"
             android:label="@string/title_activity_list_earn_points_menu" />
-        <activity android:name=".Activities.MerchantDetails.MerchantDetails"
+        <activity android:name=".Activities.Home.EarnPointDetails.MerchantDetails.MerchantDetails"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".Activities.ExcitePartner.ExcitePartnerMaster" />
+        <activity android:name=".Activities.Home.EarnPointDetails.ExcitePartner.ExcitePartnerMaster" />
         <activity android:name=".Activities.Search.SearchActivity" />
         <activity
-            android:name=".Activities.RedeemPointsDetails.RedeemDetailsHome"
+            android:name=".Activities.Home.RedeemPointsDetails.RedeemDetailsHome"
             android:label="@string/title_activity_redeem_details_home"
             android:theme="@style/MyMaterialTheme" />
         <activity
-            android:name=".Activities.ExcitePartner.ExcitePartnerList"
+            android:name=".Activities.Home.EarnPointDetails.ExcitePartner.ExcitePartnerList"
             android:label="@string/title_activity_excite_partner_list"
             android:theme="@style/MyMaterialTheme" />
 
@@ -77,7 +77,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.NoNetwork.NonetworkActivity"
+            android:name=".NoNetwork.NonetworkActivity"
             android:label="@string/title_activity_nonetwork"
             android:theme="@style/MyMaterialTheme" />
         <activity

@@ -1,4 +1,4 @@
-package com.excite.mobile.shop.Activities.MerchantDetails;
+package com.excite.mobile.shop.Activities.Home.EarnPointDetails.MerchantDetails;
 
 import android.content.Context;
 import android.os.Bundle;

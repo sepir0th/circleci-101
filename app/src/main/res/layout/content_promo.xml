@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center">
-    <com.excite.mobile.shop.Promo.LinearLayoutPromo
+    <com.excite.mobile.shop.Activities.Home.Promo.LinearLayoutPromo
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,5 +17,5 @@
             android:layout_height="120dp"
             android:background="@android:color/black">
         </Button>
-    </com.excite.mobile.shop.Promo.LinearLayoutPromo>>
+    </com.excite.mobile.shop.Activities.Home.Promo.LinearLayoutPromo>>
 </LinearLayout>
